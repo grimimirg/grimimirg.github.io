@@ -2,128 +2,244 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrea Grimandi</title>
 
-    <title>Andrea Grimandi</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Mono&display=swap" rel="stylesheet">
 
-    <style>
-        .instruments .col-lg-4 p {
-            margin-right: .75rem;
-            margin-left: .75rem;
-        }
+  <style>
+    body {
+      background: #010E1A;
+      color: #E0E0E0;
+      font-family: 'Roboto Mono', monospace;
+      padding-top: 56px;
+    }
 
-        .device-box {
-            width: 200px;
-            height: 200px;
-            margin: 10px;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+    a,
+    .nav-link {
+      color: #00FFFF !important;
+    }
 
-        .device-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    header {
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
 
-        .device-name {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 5px;
-        }
+    .navbar-brand {
+      font-family: 'Audiowide', cursive;
+      font-size: 1.75rem;
+    }
 
-        .lower-section {
-            background-color: #f8f9fa;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            margin: 100px auto;
-        }
+    .display-3 {
+      font-family: 'Audiowide', cursive;
+      color: #00FFFF;
+      text-shadow: 0 0 8px #00FFFF;
+    }
 
-        .lower-title {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .section-title {
+      font-family: 'Audiowide', cursive;
+      margin-bottom: 1rem;
+      color: #00FFFF;
+    }
 
-        .lower-description {
-            font-size: 15px;
-            line-height: 1.5;
-            color: #333;
-            text-align: justify;
-        }
-    </style>
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
 
+    .device-box {
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      border-radius: .5rem;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .device-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+    }
+
+    .device-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .device-name {
+      position: absolute;
+      bottom: .5rem;
+      right: .5rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: .25rem .5rem;
+      font-size: .875rem;
+    }
+
+    .profile-img {
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      border-radius: 50%;
+      max-width: 200px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(0, 255, 255, 0.2);
+      font-size: .875rem;
+    }
+
+    #reposGrid .repo-card {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: .5rem;
+      padding: 1rem;
+      transition: transform .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+
+    #reposGrid .repo-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    .repo-name {
+      font-weight: bold;
+      color: #00FFFF;
+      margin-bottom: .5rem;
+      text-decoration: none;
+    }
+
+    .repo-desc {
+      font-size: .9rem;
+      margin-bottom: .5rem;
+    }
+
+    .repo-meta {
+      font-size: .8rem;
+      color: #888;
+    }
+
+    .contact-item {
+      color: #E0E0E0;
+      text-decoration: none;
+      transition: transform .2s;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow .3s, background .3s;
+    }
+
+    .contact-item:hover .icon-circle {
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .contact-item span {
+      display: block;
+      font-size: 1rem;
+      margin-top: .25rem;
+    }
+
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+
+    .underline {
+      text-decoration: underline;
+      text-decoration-color: #00FFFF;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <main>
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Andrea Grimandi</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">Who am I?</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gears">Gears</a></li>
+          <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contacts &amp; Information</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-        <div class="container-fluid bg-dark text-secondary px-4 py-5 text-secondary text-white">
-            <div class="container px-4 py-6 my-5">
-                <div class="row">
-                    <div class="col text-start">
-                        <div class="display-3">Hi! I'm Andrea</div>
-                        <div class="pb-3 border-bottom"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="container text-center py-5">
+    <h1 class="display-3">Hi, I'm Andrea</h1>
+    <div class="pb-3 mb-4 border-bottom"></div>
+  </section>
 
-        <div class="container-fluid py-5">
-            <div class="container px-4 py-1 my-4">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <img class="d-block mx-auto mb-4 rounded-circle border img-fluid"
-                            src="files/profile-picture.jpg" width="400" height="400">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <h1 class="display-6">WHO AM I?</h1>
-                        <div class="col-lg-7">
-                            <p class="lead">I'm a passionate Developer, Maker and Musician from <a
-                                    href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7" target="_blank"
-                                    class="link-secondary">Valsamoggia</a>
-                                <br><br>I've been working in the IT since 2012, and I had the first guitar by hand in
-                                2020.
-                                <br><br>I'm employed in a company that provides services to hospitals throughout
-                                Europe. I'm also a volunteer developer at
-                                <b><a href="https://astranoto.com/" target="_blank"
-                                        class="link-secondary">Astranoto</a></b>
-                                and an associate of the <b><a href="https://www.fablabvalsamoggia.xyz/" target="_blank"
-                                        class="link-secondary">FabLab Valsamoggia</a></b>
-                                <br><br>In the past I played with the gorgeous singer
-                                <b><a href="https://maryblengino.it/" target="_blank" class="link-secondary">Maria
-                                        Blengino</a></b>, and now I'm currently part of a trio composed by saxophonist
-                                <b>Pawel
-                                    Stanislaw Jakimczuk</b>, bassist <b>Andrea Pollastri</b> and me as a Guitarist.
-                            </p>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section id="about" class="container py-5">
+    <h2 class="section-title">Who am I?</h2>
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center">
+        <img src="files/profile-picture.jpg" alt="Foto di Andrea" class="profile-img img-fluid mb-3">
+      </div>
+      <div class="col-md-8 justified-text">
+        <p class="lead">I'm a passionate Developer, Maker and Musician from <a
+            href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7" target="_blank" class="link-secondary">Valsamoggia</a>
+          <br><br>I've been working in the IT since 2012, and I had the first guitar by hand in
+          2020.
+          <br><br>I'm employed in a company that provides services to hospitals throughout
+          Europe. I'm also a volunteer developer at
+          <b><a href="https://astranoto.com/" target="_blank" class="link-secondary">Astranoto</a></b>
+          and an associate of the <b><a href="https://www.fablabvalsamoggia.xyz/" target="_blank"
+              class="link-secondary">FabLab Valsamoggia</a></b>
+          <br><br>In the past I played with the gorgeous singer
+          <b><a href="https://maryblengino.it/" target="_blank" class="link-secondary">Maria
+              Blengino</a></b>, and now I'm currently part of a trio composed by saxophonist
+          <b class="underline">Pawel
+            Stanislaw Jakimczuk</b>, bassist <b class="underline">Andrea Pollastri</b> and me as a Guitarist.
+        </p>
+      </div>
+    </div>
+  </section>
 
-            <div class="container mt-2">
-                <br><br>
-                <h2 class="display-6" style="text-align: center;">INSTRUMENTS</h2>
-                <div class="pb-3 mb-4 border-bottom"></div>
-                <div class="d-flex flex-wrap justify-content-center">
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/guit1.jpg" data-description="
-                     This is my main and only electric guitar. I bought it second-hand in early 2023 after spending
+  <section id="projects" class="container py-5">
+    <h2 class="section-title">Projects</h2>
+    <div class="pb-3 mb-4 border-bottom"></div><br>
+    <div id="reposGrid" class="row g-4">
+    </div>
+  </section>
+
+  <section id="gears" class="container py-5">
+    <h2 class="section-title">Gears</h2>
+    <div class="pb-3 mb-4 border-bottom"></div><br>
+    <div class="project-grid">
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/guit1.jpg"
+        data-description="This is my main and only electric guitar. I bought it second-hand in early 2023 after spending
                      more than three years searching for the best feeling and comfort while playing. And this was the
                      winner! The Tokay UES 78 is a semi-acoustic guitar crafted in Hamamatsu, Japan, renowned for its
                      exceptional suitability for jazz (but of course other genres). Its hollow body design enhances
@@ -133,12 +249,12 @@
                      model is very similar—if not identical—to the Gibson 335 (but it's €2,400 cheaper!). I was
                      fortunate enough to do a blind comparison between this guitar and a true 335, and I couldn't
                      always tell which one was mine.">
-                        <img src="files/devices/guit1.jpg" alt="Tokay UES 78">
-                        <div class="device-name">Tokay UES 78</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/guit2.jpg" data-description="
-                     The Altamira M01D is a gypsy guitar designed for traditional jazz and gypsy music styles. Its
+        <img src="files/devices/guit1.jpg" alt="Tokay UES 78">
+        <div class="device-name">Tokay UES 78</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/guit2.jpg"
+        data-description="The Altamira M01D is a gypsy guitar designed for traditional jazz and gypsy music styles. Its
                      'D' hole enhances its resonance and projection to the listener. Despite its large neck (48 mm),
                      the shape provides a very comfortable feel, making it easy to play. With its rich sound, this
                      guitar is a popular choice among both amateur musicians (like me) and professional musicians
@@ -148,49 +264,24 @@
                      country that sells it: https://scavino.it/. The only downside of this guitar is that the player
                      may experience some fatigue when trying to listen to it while playing, as the D hole is quite
                      mono directional.">
-                        <img src="files/devices/guit2.jpg" alt="Altamira M01D">
-                        <div class="device-name">Altamira M01D</div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="instrModal" tabindex="-1" role="dialog" aria-labelledby="deviceModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="instrModalLabel">Device Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">x</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img id="instrlImage" src="" alt="Device" class="img-fluid">
-                            <p id="instrDescription"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <img src="files/devices/guit2.jpg" alt="Altamira M01D">
+        <div class="device-name">Altamira M01D</div>
+      </div>
 
-            <div class="container mt-2">
-                <br><br>
-                <h2 class="display-6" style="text-align: center;">VINTAGE AUDIO DEVICES</h2>
-                <div class="pb-3 mb-4 border-bottom"></div>
-                <div class="d-flex flex-wrap justify-content-center">
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/walkman.jpg" data-description="
-                     The Grundig Beat Boy 380 is a portable cassette player that was released in 1982.
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
+        data-image="files/devices/walkman.jpg" data-description="The Grundig Beat Boy 380 is a portable cassette player that was released in 1982.
                      The device comes without a radio device, but just a tape reader that features a simple
                      layout with controls for play, stop, rewind, and fast forward. This device was (and is)
                      appreciated for its sound quality and durability. I fetched this device from a seller for
                      just €10. Unfortunately, I had to send that to a repair shop since some gears were broken,
                      as well as its belt. I had it back for €45 but the shop (http://mittaselettronica.com/) did
                      a very great and valuable job.">
-                        <img src="files/devices/walkman.jpg" alt="Grundig Beat Boy 380">
-                        <div class="device-name">Grundig Beat Boy 380</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/turntable.jpg" data-description="
-                     The Dual HS51 is a fully-automated high-quality turntable manufactured in Germany starting from 1970
+        <img src="files/devices/walkman.jpg" alt="Grundig Beat Boy 380">
+        <div class="device-name">Grundig Beat Boy 380</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
+        data-image="files/devices/turntable.jpg" data-description="The Dual HS51 is a fully-automated high-quality turntable manufactured in Germany starting from 1970
                      (this specific is from 1971), and it was designed an exceptional audio quality (back in the days,
                      I guess). This device is wheel transmission driven and it features a precision-engineered platter
                      and tonearm, ensuring accurate playback of records. It's composed by the DUAL 1218 turntable and
@@ -199,12 +290,12 @@
                      had been left in an attic among hash and dirt for probably more than thirty years. With a lot of
                      patience, and with the precious help of my father, we were able to restore it piece by piece.
                      Considering that the entire apparatus is 100% mechanical, it wasn't an easy job.">
-                        <img src="files/devices/turntable.jpg" alt="Dual HS51">
-                        <div class="device-name">Dual HS51</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/tape.JPG" data-description="
-                     The AIWA F350 tape reader, manufactured in the early 1990s, is a cassette player designed for
+        <img src="files/devices/turntable.jpg" alt="Dual HS51">
+        <div class="device-name">Dual HS51</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tape.jpg"
+        data-description="The AIWA F350 tape reader, manufactured in the early 1990s, is a cassette player designed for
                      easy playback of audio cassettes. It features an interface with controls for play, rewind, fast
                      forward, a headphone jack, automatic repeat, and Dolby B-C. The device was designed to minimize
                      background noise and provide very high audio quality. It is capable of recording as well. The
@@ -215,59 +306,34 @@
                      Nevertheless, after being stored in a cellar for five years, it was not without malfunctions.
                      Sending it to a repair shop was the best idea and the repair did really great! Worth to check it
                      out http://ivansat.com/">
-                        <img src="files/devices/tape.JPG" alt="AIWA F350">
-                        <div class="device-name">AIWA F350</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/amp.jpg" data-description="
-                     I can't say much about this amplifier other than that I found it in a local vintage shop.
+        <img src="files/devices/tape.JPG" alt="AIWA F350">
+        <div class="device-name">AIWA F350</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tape.jpg"
+        data-description="I can't say much about this amplifier other than that I found it in a local vintage shop.
                      Unfortunately, the labels were too scratched to allow me to find out the specific model. Overall,
                      it seems to be a well-made Class C amplifier compatible with Dolby 5.1. Every device I use to play
                      music is connected to it, and I can easily switch between inputs using the buttons on the front or
                      via a remote control. I bought it for €80.">
-                        <img src="files/devices/amp.jpg" alt="Yamaha amplifier">
-                        <div class="device-name">Yamaha amplifier</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/max2050.jpg" data-description="
-                     The MAXIMAL 2050 is a radio cassette recorder. It features a single cassette player and an FM/AM
+        <img src="files/devices/amp.jpg" alt="Yamaha amplifier">
+        <div class="device-name">Yamaha amplifier</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
+        data-image="files/devices/max2050.jpg" data-description="The MAXIMAL 2050 is a radio cassette recorder. It features a single cassette player and an FM/AM
                      radio receiver. It is also capable of recording on tape via a condenser microphone. It was probably
                      manufactured in Germany between 1975 and 1985. I can't say much more about this device, other than
                      that it was gifted to me by my grandfather after being unused for more than 25 years. It didn't
                      come without issues, but Mittas Elettronica (https://www.mittaselettronica.com/) worked their magic
                      and restored it as if I had bought it yesterday. There are probably none left on the face of the
                      earth of these devices.">
-                        <img src="files/devices/max2050.jpg" alt="MAXIMAL 2050">
-                        <div class="device-name">MAXIMAL 2050</div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="deviceModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deviceModalLabel">Device Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">x</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img id="modalImage" src="" alt="Device" class="img-fluid">
-                            <p id="modalDescription"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <img src="files/devices/max2050.jpg" alt="MAXIMAL 2050">
+        <div class="device-name">MAXIMAL 2050</div>
+      </div>
 
-            <div class="container mt-2">
-                <br><br>
-                <h2 class="display-6" style="text-align: center;">OTHER</h2>
-                <div class="pb-3 mb-4 border-bottom"></div>
-                <div class="d-flex flex-wrap justify-content-center">
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/tapes.jpg" data-description="
-                     This is my audio cassettes collection. Yes, I'm one of those collectors of records on tape! At the time of
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tapes.jpg"
+        data-description="This is my audio cassettes collection. Yes, I'm one of those collectors of records on tape! At the time of
                      writing, the number has reached 124 units. A good portion of them were recorded by my father from
                      vinyl records that he acquired in the late '80s, others have been recently created by me, and the
                      remaining 'colored' you might notice in the picture were found by me while scouting vintage markets
@@ -278,12 +344,12 @@
                      range from 60 up to 100 minutes. The current average age of all is about 40 years old and
                      the oldest belongs to 'America' released in 1971, the newest belongs to 'Sheer Mag - Playing
                      Favourites' released on March 1, 2024. This collection will surely increase in the future.">
-                        <img src="files/devices/tapes.jpg" alt="Audio cassettes collection">
-                        <div class="device-name">Audio cassettes collection</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/compxp.jpg" data-description="
-                     The COMPAQ Presario 2100 series is a line of laptops introduced in 2003, designed for general use,
+        <img src="files/devices/tapes.jpg" alt="Audio cassettes collection">
+        <div class="device-name">Audio cassettes collection</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/compxp.jpg"
+        data-description="The COMPAQ Presario 2100 series is a line of laptops introduced in 2003, designed for general use,
                      targeting home and small business users. It features a 15-inch display with a resolution of
                      1024x768 pixels. The laptop is equipped with processors from the Celeron family and has 256MB
                      of RAM (which is actually upgradeable to a maximum of 2GB). Its storage capacity is 42GB. This
@@ -298,12 +364,12 @@
                      kept in a display case until 2024 when she decided to gift it to me. Despite its battery is
                      totally gone it still work like the first day of its life, however, (fortunately) this is not my
                      main computer.">
-                        <img src="files/devices/compxp.jpg" alt="COMPAQ Presario 2100">
-                        <div class="device-name">COMPAQ Presario 2100</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/zenit.jpg" data-description="
-                     The Zenit XP12 is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
+        <img src="files/devices/compxp.jpg" alt="COMPAQ Presario 2100">
+        <div class="device-name">COMPAQ Presario 2100</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/zenit.jpg"
+        data-description="The Zenit XP12 is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
                       specifically by the Krasnogorsk Mechanical Plant, starting in the early 1980s. It is known for
                       its robust build and mechanical reliability, making it a popular choice among amateur photographers
                       (also mostly for its very cheap price). The camera is often paired with the Helios 44M-4 lens,
@@ -313,23 +379,23 @@
                       for portrait and artistic photography. The lens is also compatible with various camera mounts,
                       allowing for versatility in use with different camera bodies. This model belonged to my grandfather,
                       and until the early 2000s, it was its main camera.">
-                        <img src="files/devices/zenit.jpg" alt="Zenit XP12">
-                        <div class="device-name">Zenit XP12</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/zenit_e.jpg" data-description="
-                     The Zenit E is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
+        <img src="files/devices/zenit.jpg" alt="Zenit XP12">
+        <div class="device-name">Zenit XP12</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
+        data-image="files/devices/zenit_e.jpg" data-description="The Zenit E is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
                      first introduced in 1965. It is known for its robust build and simplicity, making it a popular
                      choice among amateur photographers. Key features include a M42 screw mount for interchangeable
                      lenses, a built-in silicon light meter, and a mechanical shutter with speeds ranging until
                      1/500 of a second, plus a bulb mode. The Zenit E also has a manual exposure control. The camera
                      is fully manual.">
-                        <img src="files/devices/zenit_e.jpg" alt="Zenit E">
-                        <div class="device-name">Zenit E</div>
-                    </div>
-                    <div class="device-box" data-toggle="modal" data-target="#deviceModal"
-                        data-image="files/devices/contax.jpg" data-description="
-                     The Contax 139 Q is a 35mm single-lens reflex (SLR) camera introduced in 1984 by the German
+        <img src="files/devices/zenit_e.jpg" alt="Zenit E">
+        <div class="device-name">Zenit E</div>
+      </div>
+
+      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/contax.jpg"
+        data-description="The Contax 139 Q is a 35mm single-lens reflex (SLR) camera introduced in 1984 by the German
                      manufacturer Contax. It is part of the Contax 139 series and is known for its precision engineering
                      and high-quality optics (even if the current one has a TAMRON optic).
                      Key features include a built-in TTL (through-the-lens) light meter, a
@@ -339,143 +405,155 @@
                      The Contax 139 Q is appreciated for its compact design, ease of use, and excellent image quality,
                      making it a favorite among both amateur and professional photographers. This model belonged to my
                      father, who bought it during the late 1980s.">
-                        <img src="files/devices/contax.jpg" alt="Zenit XP12">
-                        <div class="device-name">CONTAX 139Q</div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="otherModal" tabindex="-1" role="dialog" aria-labelledby="deviceModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="otherModalLabel">Device Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">x</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <img id="otherImage" src="" alt="Device" class="img-fluid">
-                            <p id="otherDescription"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <img src="files/devices/contax.jpg" alt="Zenit XP12">
+        <div class="device-name">CONTAX 139Q</div>
+      </div>
+    </div>
+  </section>
 
+  <section id="philosophy" class="container py-5">
+    <h2 class="section-title">Philosophy</h2>
+    <div class="pb-3 mb-4 border-bottom"></div><br>
+    <div class="lower-description justified-text">
+      Being an Impartial is way of being that can appear strange or incomprehensible to several people.
+      <br><br>
+      Nevertheless, an Impartial is a strong believer in rational analysis of situations. Many people confuse
+      it
+      in lack of convictions or disinterest in taking a stance. On the contrary, an impartial follows
+      clear and defined principles, striving to apply them in a balanced way, without definitive and clear
+      alignments in most situations.
+      <br><br>
+      Usually the goal of many impartials is to promote dialogue, mutual understanding, and peaceful conflict
+      resolution. This approach does not stem from indecision or weakness, but from the conviction that it is
+      the best way to face life's situations.
+      <br><br>
+      However, this attitude many times is misunderstood by giving the impression of detachment or apathy. In
+      reality, there is strong effort to maintain calm and analyze situations from multiple perspectives
+      before
+      acting or taking any position. It is believed that the truth rarely lies on just one side and that the
+      best
+      solutions emerge from confrontation and the ability on listening to others.
+      <br><br>
+      <h4>Impartials have many pros:</h4>
+      <br>
+      <strong class="underline">Fairness</strong>: Impartial individuals treat everyone equally, ensuring that decisions are made based on
+      merit
+      rather than personal biases or relationships.
+      <br><br>
+      <strong class="underline">Objectivity</strong>: They are sincere and able to assess situations and information without being
+      influenced
+      by emotions or preconceived notions, leading to more rational and sound conclusions.
+      <br><br>
+      <strong class="underline">Conflict resolution</strong>: Impartiality fosters trust and respect, doing their best to mediate
+      conflicts
+      and find common ground among differing parties or opinions.
+      <br><br>
+      <strong class="underline">Encouragement of open dialogue</strong>: Their neutrality can create an environment where diverse
+      perspectives can be shared and discussed openly, promoting collaboration, understanding and peace.
+      <br><br>
+      <strong class="underline">Better on decision-making</strong>: Impartiality allows for a comprehensive evaluation of as many as
+      possible
+      of all relevant factors, leading to more balanced decisions.
+      <br><br>
+      <strong class="underline">Promotion of equality</strong>: An impartial approach helps to dismantle systemic biases and promotes
+      equality, contributing to a fair society.
+      <br><br>
+      <strong class="underline">Friendliness</strong>: Most individuals are genuinely nice and friendly to everyone. It is very unlikely
+      that
+      they will ever start an argument or a fight.
+      <br><br>
+      <strong class="underline">Helpful</strong>: Offering help in difficult situations may be essential for most of them. Their genuine
+      approach to problem-solving creates a strong bond with people in need. This is usually how they show
+      their
+      empathy.
+      <br><br>
+      I wish people can truly understand this way of being, which is not indifference, but a sincere desire to
+      create harmony and avoid unnecessary conflicts.
+    </div>
+  </section>
+
+  <!-- Sezione Contact & Information responsive -->
+  <section id="contact" class="container py-5">
+    <h2 class="section-title text-center mb-4">Contact &amp; Information</h2>
+    <div class="pb-3 mb-4 border-bottom"></div>
+    <div class="d-flex flex-wrap justify-content-center gap-5 mb-4">
+      <a href="mailto:andrea.grimandi1@protonmail.ch" class="contact-item text-center">
+        <div class="icon-circle mb-2"><i class="bi bi-envelope fs-2"></i></div>
+        <span>E-Mail</span>
+      </a>
+      <a href="files/resumee-andrea-grimandi-website.pdf" target="_blank" class="contact-item text-center">
+        <div class="icon-circle mb-2"><i class="bi bi-file-earmark-person fs-2"></i></div>
+        <span>Resume</span>
+      </a>
+      <a href="https://github.com/grimimirg" target="_blank" class="contact-item text-center">
+        <div class="icon-circle mb-2"><i class="bi bi-github fs-2"></i></div>
+        <span>GitHub</span>
+      </a>
+      <a href="https://instagram.com/tuo_username" target="_blank" class="contact-item text-center">
+        <div class="icon-circle mb-2"><i class="bi bi-instagram fs-2"></i></div>
+        <span>Instagram</span>
+      </a>
+    </div>
+    <p class="text-center text-white-50 small mb-0">©2025 Andrea Grimandi</p>
+  </section>
+
+
+  <div class="modal fade" id="deviceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-
-        <div class="lower-section">
-            <div class="lower-title">MY PHILOSOPHY</div>
-            <div class="pb-3 mb-4 border-bottom"></div>
-            <div class="lower-description">
-                Being an Impartial is way of being that can appear strange or incomprehensible to several people.
-                <br><br>
-                Nevertheless, an Impartial is a strong believer in rational analysis of situations. Many people confuse
-                it
-                in lack of convictions or disinterest in taking a stance. On the contrary, an impartial follows
-                clear and defined principles, striving to apply them in a balanced way, without definitive and clear
-                alignments in most situations.
-                <br><br>
-                Usually the goal of many impartials is to promote dialogue, mutual understanding, and peaceful conflict
-                resolution. This approach does not stem from indecision or weakness, but from the conviction that it is
-                the best way to face life's situations.
-                <br><br>
-                However, this attitude many times is misunderstood by giving the impression of detachment or apathy. In
-                reality, there is strong effort to maintain calm and analyze situations from multiple perspectives
-                before
-                acting or taking any position. It is believed that the truth rarely lies on just one side and that the
-                best
-                solutions emerge from confrontation and the ability on listening to others.
-                <br><br>
-                Impartials have many pros:
-                <br><br>
-                <b>Fairness</b>: Impartial individuals treat everyone equally, ensuring that decisions are made based on
-                merit
-                rather than personal biases or relationships.
-                <br><br>
-                <b>Objectivity</b>: They are sincere and able to assess situations and information without being
-                influenced
-                by emotions or preconceived notions, leading to more rational and sound conclusions.
-                <br><br>
-                <b>Conflict resolution</b>: Impartiality fosters trust and respect, doing their best to mediate
-                conflicts
-                and find common ground among differing parties or opinions.
-                <br><br>
-                <b>Encouragement of open dialogue</b>: Their neutrality can create an environment where diverse
-                perspectives can be shared and discussed openly, promoting collaboration, understanding and peace.
-                <br><br>
-                <b>Better on decision-making</b>: Impartiality allows for a comprehensive evaluation of as many as
-                possible
-                of all relevant factors, leading to more balanced decisions.
-                <br><br>
-                <b>Promotion of equality</b>: An impartial approach helps to dismantle systemic biases and promotes
-                equality, contributing to a fair society.
-                <br><br>
-                <b>Friendliness</b>: Most individuals are genuinely nice and friendly to everyone. It is very unlikely
-                that
-                they will ever start an argument or a fight.
-                <br><br>
-                <b>Helpful</b>: Offering help in difficult situations may be essential for most of them. Their genuine
-                approach to problem-solving creates a strong bond with people in need. This is usually how they show
-                their
-                empathy.
-                <br><br>
-                I wish people can truly understand this way of being, which is not indifference, but a sincere desire to
-                create harmony and avoid unnecessary conflicts.
-            </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" alt="Device" class="img-fluid mb-3">
+          <p id="modalDescription" class="justified-text"></p>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="container-fluid bg-dark text-secondary px-4 py-5 text-center">
-            <div class="container px-4 py-5 my-5">
-                <div class="row">
-                    <div class="col text-start">
-                        <h1 class="fw-bold text-white">Contacts & Information</h1>
-                        <div class="pb-3 mb-4 border-bottom"></div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    var deviceModal = document.getElementById('deviceModal');
+    deviceModal.addEventListener('show.bs.modal', function (event) {
+      var box = event.relatedTarget;
+      document.getElementById('modalImage').src = box.getAttribute('data-image');
+      document.getElementById('modalDescription').textContent = box.getAttribute('data-description');
+    });
 
-                        <div class="row">
-                            <i class="col-sm-4 bi bi-envelope fs-2 align-middle"> <a class="link-secondary lead"
-                                    href="mailto: andrea.grimandi1@protonmail.ch">andrea.grimandi1@protonmail.ch</a></i>
-                            <i class="col-sm-4 bi bi-file-earmark-person fs-2 align-middle"> <a
-                                    class="link-secondary lead"
-                                    href="files/resumee-andrea-grimandi-website.pdf">Resumee</a></i>
-                        </div>
-                        </br>
-                        </br>
+    const GITHUB_USER = 'grimimirg';
+    const reposGrid = document.getElementById('reposGrid');
 
-                        <div class="row">
-                            <a class="link-secondary col-sm-1" target="_blank" href="https://github.com/grimimirg"><i
-                                    class="bi bi-github fs-2"></i></a>
-                            <a class="link-secondary col-sm-1" target="_blank"
-                                href="https://andreagrimandi.bandcamp.com/"><i
-                                    class="bi bi-music-note-list fs-2"></i></a>
-                        </div>
+    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`)
+      .then(res => res.json())
+      .then(repos => {
+        repos.forEach(repo => {
+          const col = document.createElement('div');
+          col.className = 'col-12 col-md-6';
 
-                    </div>
-                </div>
-            </div>
-            <footer class="mt-auto text-white-50">
-                <p>©2022 Andrea Grimandi</p>
-            </footer>
+          const card = document.createElement('div');
+          card.className = 'repo-card';
+
+          card.innerHTML = `
+        <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
+        <p class="repo-desc">${repo.description || ''}</p>
+        <div class="repo-meta">
+          <span><i class="bi bi-star-fill"></i> ${repo.stargazers_count}</span>
+          &nbsp;|&nbsp;
+          <span><i class="bi bi-code-slash"></i> ${repo.language || '—'}</span>
         </div>
+      `;
 
-    </main>
-
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $('#deviceModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var image = button.data('image');
-            var description = button.data('description');
-
-            var modal = $(this);
-            modal.find('#modalImage').attr('src', image);
-            modal.find('#modalDescription').text(description);
+          col.appendChild(card);
+          reposGrid.appendChild(col);
         });
-    </script>
+      })
+      .catch(err => {
+        console.error('Cannot load repo content:', err);
+        reposGrid.innerHTML = '<p class="text-danger">Cannot load GitHub content!</p>';
+      });
 
+  </script>
 </body>
 
 </html>
