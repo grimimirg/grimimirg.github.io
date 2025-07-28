@@ -1,228 +1,206 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andrea Grimandi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto+Mono&display=swap" rel="stylesheet">
+
 
   <style>
-    body {
-      background: #010E1A;
-      color: #E0E0E0;
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
+    :root {
+      --bg-color: #001022;
+      --primary-color: rgb(0, 117, 138);
+      --secondary-color: rgb(0, 70, 70);
+      --accent-color: #0088BB;
+      --text-color: #D0EFFF;
     }
 
-    a,
-    .nav-link {
-      color: #00FFFF !important;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Anonymous Pro', monospace;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    .grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      animation: moveGrid 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveGrid {
+      0% {
+        background-position: 0 0, 0 0;
+      }
+
+      100% {
+        background-position: 50px 50px, 50px 50px;
+      }
     }
 
     header {
-      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-    }
-
-    .navbar-brand {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.75rem;
-    }
-
-    .display-3 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      color: #00FFFF;
-      text-shadow: 0 0 8px #00FFFF;
-    }
-
-    .section-title {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #00FFFF;
-    }
-
-    /* Other styles unchanged */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .device-box {
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-      border-radius: .5rem;
-      overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .device-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-    }
-
-    .device-box img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .device-name {
-      position: absolute;
-      bottom: .5rem;
-      right: .5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
       background: rgba(0, 0, 0, 0.5);
-      padding: .25rem .5rem;
-      font-size: .875rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
     }
 
-    .profile-img {
-      border: 2px solid rgba(0, 255, 255, 0.3);
-      border-radius: 50%;
-      max-width: 300px;
+    header .logo {
+      font-size: 1.5rem;
+      color: var(--primary-color);
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      border-top: 1px solid rgba(0, 255, 255, 0.2);
-      font-size: .875rem;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
     }
 
-    #reposGrid .repo-card {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      border-radius: .5rem;
-      padding: 1rem;
-      transition: transform .3s, box-shadow .3s;
-      cursor: pointer;
-    }
-
-    #reposGrid .repo-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-    }
-
-    #philosophy {
-      background-color: #112A3A;
-      border-radius: .5rem;
-      padding: 2rem;
-    }
-
-    .repo-name {
-      font-weight: bold;
-      color: #00FFFF;
-      margin-bottom: .5rem;
+    nav a {
+      color: var(--text-color);
       text-decoration: none;
+      transition: color .3s;
     }
 
-    .repo-desc {
-      font-size: .9rem;
-      margin-bottom: .5rem;
+    nav a:hover {
+      color: var(--accent-color);
     }
 
-    .repo-meta {
-      font-size: .8rem;
-      color: #888;
-    }
-
-    .contact-item {
-      color: #E0E0E0;
-      text-decoration: none;
-      transition: transform .2s;
-    }
-
-    .contact-item:hover {
-      transform: translateY(-4px);
-    }
-
-    .icon-circle {
-      width: 70px;
-      height: 70px;
-      border: 2px solid rgba(0, 255, 255, 0.5);
-      border-radius: 50%;
+    .hero {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: box-shadow .3s, background .3s;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
 
-    .contact-item:hover .icon-circle {
-      background: rgba(0, 255, 255, 0.1);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 900px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: .75rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .justified-text {
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: auto;
+    .hero-content .profile {
+      flex: 1 1 250px;
+      text-align: center;
     }
 
-    .underline {
-      text-decoration: underline;
-      text-decoration-color: #00FFFF;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
+    .hero-content .profile img {
+      width: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-color);
     }
 
-    /* Large screens: sidebar layout */
-    @media (min-width: 992px) {
-      header.navbar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 200px;
-        border-right: 1px solid rgba(0, 255, 255, 0.2);
-        padding-top: 1rem;
-      }
-
-      body {
-        padding-top: 0;
-        padding-left: 200px;
-      }
-
-      #navMenu {
-        display: block !important;
-      }
-
-      .navbar-nav {
-        flex-direction: column !important;
-      }
-
-      .navbar-nav .nav-item+.nav-item {
-        margin-top: 1rem;
-      }
-
-      .navbar-brand {
-        margin-bottom: 2rem;
-      }
+    .hero-content .info {
+      flex: 2 1 400px;
+      color: var(--text-color);
     }
 
-    @media (max-width: 991.98px) {
-      header.navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        border-right: none;
-      }
+    .hero-content .info h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      text-shadow: 0 0 8px var(--primary-color);
+    }
 
-      body {
-        padding-top: 56px;
-        padding-left: 0;
-      }
+    .hero-content .info p {
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: .75rem 1.5rem;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: background .3s, color .3s;
+    }
+
+    .btn:hover {
+      background: var(--accent-color);
+      color: var(--bg-color);
+    }
+
+    section {
+      padding: 4rem 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: .5rem;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px var(--secondary-color);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card .card-body {
+      padding: 1rem;
+    }
+
+    .card h3 {
+      margin-bottom: .5rem;
+      color: var(--primary-color);
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     #backToTop {
@@ -249,103 +227,118 @@
       opacity: 0.8;
     }
 
-    /* Large screens: sidebar layout */
-    @media (min-width: 992px) {
-      header.navbar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 200px;
-        border-right: 1px solid rgba(0, 255, 255, 0.2);
-        padding-top: 1rem;
-      }
-
-      body {
-        padding-top: 0;
-        padding-left: 200px;
-      }
-
-      #navMenu {
-        display: block !important;
-      }
-
-      .navbar-nav {
-        flex-direction: column !important;
-      }
-
-      .navbar-nav .nav-item+.nav-item {
-        margin-top: 1rem;
-      }
-
-      .navbar-brand {
-        margin-bottom: 2rem;
-      }
+    #philosophy {
+      background-color: #112A3A;
+      border-radius: .5rem;
+      padding: 2rem;
     }
 
-    @media (max-width: 991.98px) {
-      header.navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        border-right: none;
-      }
+    .underline {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
 
-      body {
-        padding-top: 56px;
-        padding-left: 0;
-      }
+    #reposGrid .repo-card {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: .5rem;
+      padding: 1rem;
+      transition: transform .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+
+    #reposGrid .repo-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0.30rem;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      transition: filter .3s;
+    }
+
+    .navbar-toggler-icon:hover {
+      filter: invert(70%) sepia(80%) saturate(500%) hue-rotate(170deg);
+    }
+
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.897);
+    }
+
+    body {
+      padding-top: 56px;
+    }
+
+    .hero-content .profile img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      display: block;
+      margin: 0 auto;
+      margin-top: 140px;
     }
   </style>
 </head>
 
 <body>
+  <div class="grid"></div>
 
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
-        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <header class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid px-5">
+      <a class="navbar-brand logo" href="#">Andrea Grimandi</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#about">Who am I?</a></li>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#whoami">Who am I?</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gears">Gears</a></li>
           <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contacts & Information</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact &amp; Info</a></li>
         </ul>
       </div>
     </div>
   </header>
 
-  <section class="container text-center py-5">
-    <h1 class="display-3">Hi, I'm Andrea</h1>
-    <div class="pb-3 mb-4 border-bottom"></div>
-  </section>
-
-  <section id="about" class="container py-5">
-    <h2 class="section-title">Who am I?</h2>
-    <div class="row align-items-center">
-      <div class="col-md-4 text-center">
-        <img src="files/profile-picture.jpg" class="profile-img img-fluid mb-3">
+  <section class="hero" id="whoami">
+    <div class="hero-content">
+      <div class="profile">
+        <img src="files/profile-picture.jpg">
       </div>
-      <div class="col-md-8 justified-text">
-        <p class="lead">I'm a passionate Developer, Maker and Musician from <a
-            href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7" target="_blank" class="link-secondary">Valsamoggia</a>
-          <br><br>I've been working in the IT since 2012, and I had the first guitar by hand in
-          2020.
-          <br><br>I'm employed in a company that provides services to hospitals throughout
-          Europe. I'm also a volunteer developer at
-          <b><a href="https://astranoto.com/" target="_blank" class="link-secondary">Astranoto</a></b>
-          and an associate of the <b><a href="https://www.fablabvalsamoggia.xyz/" target="_blank"
-              class="link-secondary">FabLab Valsamoggia</a></b>
-          <br><br>In the past I played with the gorgeous singer
-          <b><a href="https://maryblengino.it/" target="_blank" class="link-secondary">Maria
-              Blengino</a></b>, and now I'm currently part of a trio composed by saxophonist
-          <b class="underline">Pawel
-            Stanislaw Jakimczuk</b>, bassist <b class="underline">Andrea Pollastri</b> and me as a Guitarist.
+      <div class="info">
+        <h2>Who am I?</h2>
+        <div class="pb-3 mb-4 border-bottom"></div><br>
+        <p class="lead">I'm a Developer, Maker and Musician from <a href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7"
+            target="_blank">Valsamoggia</a>.<br><br>
+          I'm employed in a company that provides services to hospitals throughout Europe and volunteer developer at <a
+            href="https://astranoto.com/" target="_blank">Astranoto</a> as well as an associate at <a
+            href="https://www.fablabvalsamoggia.xyz/" target="_blank">FabLab Valsamoggia</a>.<br><br>
+          Previously, I played with the gorgeous singer <a href="https://maryblengino.it/" target="_blank">Maria
+            Blengino</a>, and
+          now I'm part of a trio with saxophonist <strong class="underline">Pawel Stanislaw Jakimczuk</strong>, bassist
+          <strong class="underline">Andrea
+            Pollastri</strong>, and myself on guitar.
         </p>
       </div>
     </div>
@@ -355,184 +348,6 @@
     <h2 class="section-title">Projects</h2>
     <div class="pb-3 mb-4 border-bottom"></div><br>
     <div id="reposGrid" class="row g-4">
-    </div>
-  </section>
-
-  <section id="gears" class="container py-5">
-    <h2 class="section-title">Gears</h2>
-    <div class="pb-3 mb-4 border-bottom"></div><br>
-    <div class="project-grid">
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/guit1.jpg"
-        data-description="This is my main and only electric guitar. I bought it second-hand in early 2023 after spending
-                     more than three years searching for the best feeling and comfort while playing. And this was the
-                     winner! The Tokay UES 78 is a semi-acoustic guitar crafted in Hamamatsu, Japan, renowned for its
-                     exceptional suitability for jazz (but of course other genres). Its hollow body design enhances
-                     resonance and warmth, producing a rich, full-bodied tone that I truly appreciate. The guitar
-                     features a very comfortable neck and body (probably the main reasons I bought it). It doesn't
-                     have anything exceptional aside from its excellent craftsmanship. It's evident that this specific
-                     model is very similar—if not identical—to the Gibson 335 (but it's €2,400 cheaper!). I was
-                     fortunate enough to do a blind comparison between this guitar and a true 335, and I couldn't
-                     always tell which one was mine.">
-        <img src="files/devices/guit1.jpg" alt="Tokay UES 78">
-        <div class="device-name">Tokay UES 78</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/guit2.jpg"
-        data-description="The Altamira M01D is a gypsy guitar designed for traditional jazz and gypsy music styles. Its
-                     'D' hole enhances its resonance and projection to the listener. Despite its large neck (48 mm),
-                     the shape provides a very comfortable feel, making it easy to play. With its rich sound, this
-                     guitar is a popular choice among both amateur musicians (like me) and professional musicians
-                     seeking an authentic gypsy guitar experience. It comes with a set of 'Argentine' 0.11 strings,
-                     the only set that can make you sound like Django. Since it is not commonly played by many
-                     musicians, I couldn't find any used ones, so I decided to buy it from the only place in the
-                     country that sells it: https://scavino.it/. The only downside of this guitar is that the player
-                     may experience some fatigue when trying to listen to it while playing, as the D hole is quite
-                     mono directional.">
-        <img src="files/devices/guit2.jpg" alt="Altamira M01D">
-        <div class="device-name">Altamira M01D</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
-        data-image="files/devices/walkman.jpg" data-description="The Grundig Beat Boy 380 is a portable cassette player that was released in 1982.
-                     The device comes without a radio device, but just a tape reader that features a simple
-                     layout with controls for play, stop, rewind, and fast forward. This device was (and is)
-                     appreciated for its sound quality and durability. I fetched this device from a seller for
-                     just €10. Unfortunately, I had to send that to a repair shop since some gears were broken,
-                     as well as its belt. I had it back for €45 but the shop (http://mittaselettronica.com/) did
-                     a very great and valuable job.">
-        <img src="files/devices/walkman.jpg" alt="Grundig Beat Boy 380">
-        <div class="device-name">Grundig Beat Boy 380</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
-        data-image="files/devices/turntable.jpg" data-description="The Dual HS51 is a fully-automated high-quality turntable manufactured in Germany starting from 1970
-                     (this specific is from 1971), and it was designed an exceptional audio quality (back in the days,
-                     I guess). This device is wheel transmission driven and it features a precision-engineered platter
-                     and tonearm, ensuring accurate playback of records. It's composed by the DUAL 1218 turntable and
-                     its own amplifier. The HS51 was known for its excellent sound quality and durability. It includes
-                     adjustable tracking force and anti-skate controls. This was gifted to me by a family friend. It
-                     had been left in an attic among hash and dirt for probably more than thirty years. With a lot of
-                     patience, and with the precious help of my father, we were able to restore it piece by piece.
-                     Considering that the entire apparatus is 100% mechanical, it wasn't an easy job.">
-        <img src="files/devices/turntable.jpg" alt="Dual HS51">
-        <div class="device-name">Dual HS51</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tape.jpg"
-        data-description="The AIWA F350 tape reader, manufactured in the early 1990s, is a cassette player designed for
-                     easy playback of audio cassettes. It features an interface with controls for play, rewind, fast
-                     forward, a headphone jack, automatic repeat, and Dolby B-C. The device was designed to minimize
-                     background noise and provide very high audio quality. It is capable of recording as well. The
-                     tape reader still belongs to my father, who gently conceded it on to me. The fidelity of the
-                     recordings is quite astonishing for such a device. At the time of writing, I've done myself more than 20
-                     recordings with this device from various sources including vinyl, CDs, digital tracks, audio streaming and the
-                     only noticeable degradation (at least to my ear) occurred when I play back recordings from .wav files.
-                     Nevertheless, after being stored in a cellar for five years, it was not without malfunctions.
-                     Sending it to a repair shop was the best idea and the repair did really great! Worth to check it
-                     out http://ivansat.com/">
-        <img src="files/devices/tape.JPG" alt="AIWA F350">
-        <div class="device-name">AIWA F350</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tape.jpg"
-        data-description="I can't say much about this amplifier other than that I found it in a local vintage shop.
-                     Unfortunately, the labels were too scratched to allow me to find out the specific model. Overall,
-                     it seems to be a well-made Class C amplifier compatible with Dolby 5.1. Every device I use to play
-                     music is connected to it, and I can easily switch between inputs using the buttons on the front or
-                     via a remote control. I bought it for €80.">
-        <img src="files/devices/amp.jpg" alt="Yamaha amplifier">
-        <div class="device-name">Yamaha amplifier</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
-        data-image="files/devices/max2050.jpg" data-description="The MAXIMAL 2050 is a radio cassette recorder. It features a single cassette player and an FM/AM
-                     radio receiver. It is also capable of recording on tape via a condenser microphone. It was probably
-                     manufactured in Germany between 1975 and 1985. I can't say much more about this device, other than
-                     that it was gifted to me by my grandfather after being unused for more than 25 years. It didn't
-                     come without issues, but Mittas Elettronica (https://www.mittaselettronica.com/) worked their magic
-                     and restored it as if I had bought it yesterday. There are probably none left on the face of the
-                     earth of these devices.">
-        <img src="files/devices/max2050.jpg" alt="MAXIMAL 2050">
-        <div class="device-name">MAXIMAL 2050</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/tapes.jpg"
-        data-description="This is my audio cassettes collection. Yes, I'm one of those collectors of records on tape! At the time of
-                     writing, the number has reached 124 units. A good portion of them were recorded by my father from
-                     vinyl records that he acquired in the late '80s, others have been recently created by me, and the
-                     remaining 'colored' you might notice in the picture were found by me while scouting vintage markets
-                     or during my travels abroad in Europe and North America. Some of my favorite records in this
-                     collection are The Weather Report, Emerson Lake & Palmer, America, Asia, The Alan Parsons Project,
-                     Crosby, Stills, Nash & Young, Liquid Tension Experiment, George Benson, Glenn Miller, Grant Green,
-                     Pat Metheny and Miles Davis. Most of the recorded cassettes are branded TDK, a few Maxell and they
-                     range from 60 up to 100 minutes. The current average age of all is about 40 years old and
-                     the oldest belongs to 'America' released in 1971, the newest belongs to 'Sheer Mag - Playing
-                     Favourites' released on March 1, 2024. This collection will surely increase in the future.">
-        <img src="files/devices/tapes.jpg" alt="Audio cassettes collection">
-        <div class="device-name">Audio cassettes collection</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/compxp.jpg"
-        data-description="The COMPAQ Presario 2100 series is a line of laptops introduced in 2003, designed for general use,
-                     targeting home and small business users. It features a 15-inch display with a resolution of
-                     1024x768 pixels. The laptop is equipped with processors from the Celeron family and has 256MB
-                     of RAM (which is actually upgradeable to a maximum of 2GB). Its storage capacity is 42GB. This
-                     specific laptop still runs on Windows XP, which was the prevalent operating system at the time.
-                     It includes a variety of ports, including 2 USB 1.0 ports, an Ethernet port (RJ-45), a modem port
-                     (RJ-11), VGA, a headphone jack, a microphone input, and a floppy disk drive. This particular model
-                     comes with an S-Video out port for connecting to TVs or external displays, a PCMCIA slot for
-                     adding expansion cards (such as network cards or additional ports), and, of course, a power
-                     connector for the power adapter. Overall, I think the Compaq Presario 2100 was a very good
-                     budget-friendly option for users performing everyday computing tasks during the early 2000s.
-                     This one comes from a friend who bought it in 2003, used it until 2014, and since then
-                     kept in a display case until 2024 when she decided to gift it to me. Despite its battery is
-                     totally gone it still work like the first day of its life, however, (fortunately) this is not my
-                     main computer.">
-        <img src="files/devices/compxp.jpg" alt="COMPAQ Presario 2100">
-        <div class="device-name">COMPAQ Presario 2100</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/zenit.jpg"
-        data-description="The Zenit XP12 is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
-                      specifically by the Krasnogorsk Mechanical Plant, starting in the early 1980s. It is known for
-                      its robust build and mechanical reliability, making it a popular choice among amateur photographers
-                      (also mostly for its very cheap price). The camera is often paired with the Helios 44M-4 lens,
-                      which is a 58mm f/2 lens renowned for its unique bokeh and sharpness. The Helios 44M-4 features a
-                      classic design with a 6-element, 4-group  optical construction and a 49mm filter thread.
-                      It is particularly noted for its ability to produce a swirly bokeh effect, making it a favorite
-                      for portrait and artistic photography. The lens is also compatible with various camera mounts,
-                      allowing for versatility in use with different camera bodies. This model belonged to my grandfather,
-                      and until the early 2000s, it was its main camera.">
-        <img src="files/devices/zenit.jpg" alt="Zenit XP12">
-        <div class="device-name">Zenit XP12</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal"
-        data-image="files/devices/zenit_e.jpg" data-description="The Zenit E is a 35mm single-lens reflex (SLR) camera that was manufactured in the Soviet Union,
-                     first introduced in 1965. It is known for its robust build and simplicity, making it a popular
-                     choice among amateur photographers. Key features include a M42 screw mount for interchangeable
-                     lenses, a built-in silicon light meter, and a mechanical shutter with speeds ranging until
-                     1/500 of a second, plus a bulb mode. The Zenit E also has a manual exposure control. The camera
-                     is fully manual.">
-        <img src="files/devices/zenit_e.jpg" alt="Zenit E">
-        <div class="device-name">Zenit E</div>
-      </div>
-
-      <div class="device-box" data-bs-toggle="modal" data-bs-target="#deviceModal" data-image="files/devices/contax.jpg"
-        data-description="The Contax 139 Q is a 35mm single-lens reflex (SLR) camera introduced in 1984 by the German
-                     manufacturer Contax. It is part of the Contax 139 series and is known for its precision engineering
-                     and high-quality optics (even if the current one has a TAMRON optic).
-                     Key features include a built-in TTL (through-the-lens) light meter, a
-                     shutter speed range from 1 second to 1/1000 of a second, and a unique quartz-controlled electronic
-                     shutter for accurate timing. The camera also supports interchangeable lenses with the
-                     Contax/Yashica (C/Y) mount, allowing users to utilize a wide range of high-quality lenses.
-                     The Contax 139 Q is appreciated for its compact design, ease of use, and excellent image quality,
-                     making it a favorite among both amateur and professional photographers. This model belonged to my
-                     father, who bought it during the late 1980s.">
-        <img src="files/devices/contax.jpg" alt="Zenit XP12">
-        <div class="device-name">CONTAX 139Q</div>
-      </div>
     </div>
   </section>
 
@@ -605,10 +420,9 @@
     </div>
   </section>
 
-  <!-- Sezione Contact & Information responsive -->
   <section id="contact" class="container py-5">
-    <h2 class="section-title text-center mb-4">Contact &amp; Information</h2>
-    <div class="pb-3 mb-4 border-bottom"></div>
+    <h2 style="text-align:center; margin-bottom:2rem; color:var(--accent-color);">Contact &amp; Information</h2>
+    <div class="pb-3 mb-4 border-bottom"></div><br>
     <div class="d-flex flex-wrap justify-content-center gap-5 mb-4">
       <a href="mailto:andrea.grimandi1@protonmail.ch" class="contact-item text-center">
         <div class="icon-circle mb-2"><i class="bi bi-envelope fs-2"></i></div>
@@ -627,37 +441,19 @@
         <span>Instagram</span>
       </a>
     </div>
-    <p class="text-center text-white-50 small mb-0">©2025 Andrea Grimandi</p>
   </section>
-
-
-  <div class="modal fade" id="deviceModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content bg-dark text-white">
-        <div class="modal-header border-0">
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body text-center">
-          <img id="modalImage" src="" alt="Device" class="img-fluid mb-3">
-          <p id="modalDescription" class="justified-text"></p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <button id="backToTop" aria-label="Back to top">
     &#11165;
   </button>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
-    var deviceModal = document.getElementById('deviceModal');
-    deviceModal.addEventListener('show.bs.modal', function (event) {
-      var box = event.relatedTarget;
-      document.getElementById('modalImage').src = box.getAttribute('data-image');
-      document.getElementById('modalDescription').textContent = box.getAttribute('data-description');
-    });
+  <footer>
+    &copy; 2025 Andrea Grimandi
+  </footer>
 
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script>
     const GITHUB_USER = 'grimimirg';
     const reposGrid = document.getElementById('reposGrid');
 
@@ -691,7 +487,7 @@
       });
 
     const btn = document.getElementById('backToTop');
-    // mostra il bottone se scroll > 200px
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
         btn.style.display = 'block';
@@ -699,7 +495,7 @@
         btn.style.display = 'none';
       }
     });
-    // al click, scroll fluido verso l'alto
+
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
