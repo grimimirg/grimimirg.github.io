@@ -17,8 +17,8 @@
     body {
       background: #010E1A;
       color: #E0E0E0;
-      font-family: 'Roboto Mono', monospace;
-      padding-top: 56px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
     }
 
     a,
@@ -31,22 +31,26 @@
     }
 
     .navbar-brand {
-      font-family: 'Audiowide', cursive;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
       font-size: 1.75rem;
     }
 
     .display-3 {
-      font-family: 'Audiowide', cursive;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
       color: #00FFFF;
       text-shadow: 0 0 8px #00FFFF;
     }
 
     .section-title {
-      font-family: 'Audiowide', cursive;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
       margin-bottom: 1rem;
       color: #00FFFF;
     }
 
+    /* Other styles unchanged */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -65,7 +69,7 @@
 
     .device-box:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 
     .device-box img {
@@ -153,12 +157,6 @@
       box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     }
 
-    .contact-item span {
-      display: block;
-      font-size: 1rem;
-      margin-top: .25rem;
-    }
-
     .justified-text {
       text-align: justify;
       text-justify: inter-word;
@@ -171,25 +169,148 @@
       text-decoration-thickness: 2px;
       text-underline-offset: 3px;
     }
+
+    /* Large screens: sidebar layout */
+    @media (min-width: 992px) {
+      header.navbar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 200px;
+        border-right: 1px solid rgba(0, 255, 255, 0.2);
+        padding-top: 1rem;
+      }
+
+      body {
+        padding-top: 0;
+        padding-left: 200px;
+      }
+
+      #navMenu {
+        display: block !important;
+      }
+
+      .navbar-nav {
+        flex-direction: column !important;
+      }
+
+      .navbar-nav .nav-item+.nav-item {
+        margin-top: 1rem;
+      }
+
+      .navbar-brand {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Small screens: collapsed mobile navbar */
+    @media (max-width: 991.98px) {
+      header.navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-right: none;
+      }
+
+      body {
+        padding-top: 56px;
+        padding-left: 0;
+      }
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+      line-height: 1;
+      text-align: center;
+      background-color: rgba(0, 255, 255, 0.3);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 1050;
+      transition: opacity 0.3s;
+    }
+
+    #backToTop:hover {
+      opacity: 0.8;
+    }
+
+    /* Large screens: sidebar layout */
+    @media (min-width: 992px) {
+      header.navbar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 200px;
+        border-right: 1px solid rgba(0, 255, 255, 0.2);
+        padding-top: 1rem;
+      }
+
+      body {
+        padding-top: 0;
+        padding-left: 200px;
+      }
+
+      #navMenu {
+        display: block !important;
+      }
+
+      .navbar-nav {
+        flex-direction: column !important;
+      }
+
+      .navbar-nav .nav-item+.nav-item {
+        margin-top: 1rem;
+      }
+
+      .navbar-brand {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Small screens: collapsed mobile navbar */
+    @media (max-width: 991.98px) {
+      header.navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border-right: none;
+      }
+
+      body {
+        padding-top: 56px;
+        padding-left: 0;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Andrea Grimandi</a>
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
         aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="#about">Who am I?</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#gears">Gears</a></li>
           <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contacts &amp; Information</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contacts & Information</a></li>
         </ul>
       </div>
     </div>
@@ -436,33 +557,41 @@
       <br><br>
       <h4>Impartials have many pros:</h4>
       <br>
-      <strong class="underline">Fairness</strong>: Impartial individuals treat everyone equally, ensuring that decisions are made based on
+      <strong class="underline">Fairness</strong>: Impartial individuals treat everyone equally, ensuring that decisions
+      are made based on
       merit
       rather than personal biases or relationships.
       <br><br>
-      <strong class="underline">Objectivity</strong>: They are sincere and able to assess situations and information without being
+      <strong class="underline">Objectivity</strong>: They are sincere and able to assess situations and information
+      without being
       influenced
       by emotions or preconceived notions, leading to more rational and sound conclusions.
       <br><br>
-      <strong class="underline">Conflict resolution</strong>: Impartiality fosters trust and respect, doing their best to mediate
+      <strong class="underline">Conflict resolution</strong>: Impartiality fosters trust and respect, doing their best
+      to mediate
       conflicts
       and find common ground among differing parties or opinions.
       <br><br>
-      <strong class="underline">Encouragement of open dialogue</strong>: Their neutrality can create an environment where diverse
+      <strong class="underline">Encouragement of open dialogue</strong>: Their neutrality can create an environment
+      where diverse
       perspectives can be shared and discussed openly, promoting collaboration, understanding and peace.
       <br><br>
-      <strong class="underline">Better on decision-making</strong>: Impartiality allows for a comprehensive evaluation of as many as
+      <strong class="underline">Better on decision-making</strong>: Impartiality allows for a comprehensive evaluation
+      of as many as
       possible
       of all relevant factors, leading to more balanced decisions.
       <br><br>
-      <strong class="underline">Promotion of equality</strong>: An impartial approach helps to dismantle systemic biases and promotes
+      <strong class="underline">Promotion of equality</strong>: An impartial approach helps to dismantle systemic biases
+      and promotes
       equality, contributing to a fair society.
       <br><br>
-      <strong class="underline">Friendliness</strong>: Most individuals are genuinely nice and friendly to everyone. It is very unlikely
+      <strong class="underline">Friendliness</strong>: Most individuals are genuinely nice and friendly to everyone. It
+      is very unlikely
       that
       they will ever start an argument or a fight.
       <br><br>
-      <strong class="underline">Helpful</strong>: Offering help in difficult situations may be essential for most of them. Their genuine
+      <strong class="underline">Helpful</strong>: Offering help in difficult situations may be essential for most of
+      them. Their genuine
       approach to problem-solving creates a strong bond with people in need. This is usually how they show
       their
       empathy.
@@ -512,6 +641,10 @@
     </div>
   </div>
 
+  <button id="backToTop" aria-label="Back to top">
+    &#11165;
+  </button>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
     var deviceModal = document.getElementById('deviceModal');
@@ -553,7 +686,21 @@
         reposGrid.innerHTML = '<p class="text-danger">Cannot load GitHub content!</p>';
       });
 
+    const btn = document.getElementById('backToTop');
+    // mostra il bottone se scroll > 200px
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        btn.style.display = 'block';
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+    // al click, scroll fluido verso l'alto
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
+
 </body>
 
 </html>
