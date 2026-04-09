@@ -1,483 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andrea Grimandi</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-  <style>
-    :root {
-      --bg-color: #001022;
-      --primary-color: rgb(0, 117, 138);
-      --secondary-color: rgb(0, 70, 70);
-      --accent-color: #0088BB;
-      --text-color: #D0EFFF;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Anonymous Pro', monospace;
-      background: var(--bg-color);
-      color: var(--text-color);
-      overflow-x: hidden;
-    }
-
-    .grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background:
-        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
-        linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
-      background-size: 50px 50px;
-      animation: moveGrid 20s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes moveGrid {
-      0% {
-        background-position: 0 0, 0 0;
-      }
-
-      100% {
-        background-position: 50px 50px, 50px 50px;
-      }
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(0, 0, 0, 0.5);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 10;
-    }
-
-    header .logo {
-      font-size: 1.5rem;
-      color: var(--primary-color);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      transition: color .3s;
-    }
-
-    nav a:hover {
-      color: var(--accent-color);
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-
-    .hero-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      max-width: 900px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: .75rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .hero-content .profile {
-      flex: 1 1 250px;
-      text-align: center;
-    }
-
-    .hero-content .profile img {
-      width: 200px;
-      border-radius: 50%;
-      border: 3px solid var(--accent-color);
-    }
-
-    .hero-content .info {
-      flex: 2 1 400px;
-      color: var(--text-color);
-    }
-
-    .hero-content .info h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      text-shadow: 0 0 8px var(--primary-color);
-    }
-
-    .hero-content .info p {
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: .75rem 1.5rem;
-      border: 2px solid var(--accent-color);
-      color: var(--accent-color);
-      text-transform: uppercase;
-      font-weight: bold;
-      transition: background .3s, color .3s;
-    }
-
-    .btn:hover {
-      background: var(--accent-color);
-      color: var(--bg-color);
-    }
-
-    section {
-      padding: 4rem 2rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: .5rem;
-      overflow: hidden;
-      transition: transform .3s, box-shadow .3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 20px var(--secondary-color);
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-    }
-
-    .card .card-body {
-      padding: 1rem;
-    }
-
-    .card h3 {
-      margin-bottom: .5rem;
-      color: var(--primary-color);
-    }
-
-    footer {
-      padding: 2rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 48px;
-      height: 48px;
-      font-size: 1.5rem;
-      line-height: 1;
-      text-align: center;
-      background-color: rgba(0, 255, 255, 0.3);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      display: none;
-      z-index: 1050;
-      transition: opacity 0.3s;
-    }
-
-    #backToTop:hover {
-      opacity: 0.8;
-    }
-
-    #philosophy {
-      background-color: #112A3A;
-      border-radius: .5rem;
-      padding: 2rem;
-    }
-
-    .underline {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-
-    #reposGrid .repo-card {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      border-radius: .5rem;
-      padding: 1rem;
-      transition: transform .3s, box-shadow .3s;
-      cursor: pointer;
-    }
-
-    #reposGrid .repo-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-    }
-
-    .navbar-toggler {
-      border: none;
-      padding: 0.30rem;
-    }
-
-    .navbar-toggler:focus {
-      box-shadow: none;
-    }
-
-    .navbar-toggler-icon {
-      display: inline-block;
-      width: 1.5em;
-      height: 1.5em;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-      background-size: 100% 100%;
-      transition: filter .3s;
-    }
-
-    .navbar-toggler-icon:hover {
-      filter: invert(70%) sepia(80%) saturate(500%) hue-rotate(170deg);
-    }
-
-    header.navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      background: rgba(0, 0, 0, 0.897);
-    }
-
-    body {
-      padding-top: 56px;
-    }
-
-    .hero-content .profile img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 0.75rem;
-      display: block;
-      margin: 0 auto;
-      margin-top: 140px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Grimandi - Developer Portfolio</title>
+    <link rel="stylesheet" href="css/theme.css">
 </head>
-
 <body>
-  <div class="grid"></div>
+<div class="container">
+    <header>
+        <h1>Andrea Grimandi</h1>
+        <p>Developer • Maker • Musician</p>
+    </header>
 
-  <header class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid px-5">
-      <a class="navbar-brand logo" href="#">Andrea Grimandi</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#whoami">Who am I?</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#philosophy">Philosophy</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact &amp; Info</a></li>
-        </ul>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero" id="whoami">
-    <div class="hero-content">
-      <div class="profile">
-        <img src="files/profile-picture.jpg">
-      </div>
-      <div class="info">
-        <h2>Who am I?</h2>
-        <div class="pb-3 mb-4 border-bottom"></div><br>
-        <p class="lead">I'm a Developer, Maker and Musician from <a href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7"
-            target="_blank">Valsamoggia</a>.<br><br>
-          I'm employed in a company that provides services to hospitals throughout Europe and I cooperate with
-          <a href="https://andrearago.dev/">Andrea Rago</a>, but I am also a volunteer developer at <a
-            href="https://astranoto.com/" target="_blank">Astranoto</a> as well as an associate at <a
-            href="https://www.fablabvalsamoggia.xyz/" target="_blank">FabLab Valsamoggia</a>.<br><br>
-          I played with the gorgeous singer <a href="https://maryblengino.it/" target="_blank">Maria
-            Blengino</a>, and
-          now I'm doing solo music for leisure.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="container py-5">
-    <h2 class="section-title">Projects</h2>
-    <div class="pb-3 mb-4 border-bottom"></div><br>
-    <div id="reposGrid" class="row g-4">
-    </div>
-  </section>
-
-  <section id="philosophy" class="container py-5">
-    <h2 class="section-title">Philosophy</h2>
-    <div class="pb-3 mb-4 border-bottom"></div><br>
-    <div class="lower-description justified-text">
-      Being an Impartial is a way of being that can appear strange or incomprehensible to many people.
-      <br><br>
-      Nevertheless, an Impartial is a strong believer in rational analysis of situations. Many people confuse
-      it as a lack of convictions or disinterest in taking a stance. On the contrary, an impartial follows
-      clear and defined principles, striving to apply them in a balanced way, without definitive and clear
-      alignments in most situations.
-      <br><br>
-      Usually the goal of many impartials is to promote dialogue, mutual understanding, and peaceful conflict
-      resolution. This approach does not stem from indecision or weakness, but from the conviction that it is
-      the best way to face life's situations.
-      <br><br>
-      However, this attitude is often misunderstood by giving the impression of detachment or apathy. In
-      reality, there is strong effort to maintain calm and analyze situations from multiple perspectives
-      before acting or taking any position. It is believed that the truth rarely lies on just one side and that the
-      best solutions emerge from confrontation and the ability to listen to others.
-      <br><br>
-      <h4>Impartials have many strengths:</h4>
-      <br>
-      <strong class="underline">Fairness</strong>: Impartial individuals treat everyone equally, ensuring that decisions
-      are made based on merit rather than personal biases or relationships.
-      <br><br>
-      <strong class="underline">Objectivity</strong>: They are honest and able to assess situations and information
-      without being influenced by emotions or preconceived notions, leading to more rational and sound conclusions.
-      <br><br>
-      <strong class="underline">Conflict resolution</strong>: Impartiality fosters trust and respect, enabling them to mediate
-      conflicts and find common ground among differing parties or opinions.
-      <br><br>
-      <strong class="underline">Encouragement of open dialogue</strong>: Their neutrality can create an environment
-      where diverse perspectives can be shared and discussed openly, promoting collaboration, understanding and peace.
-      <br><br>
-      <strong class="underline">Better decision-making</strong>: Impartiality allows for a comprehensive evaluation
-      of as many possible of all relevant factors, leading to more balanced decisions.
-      <br><br>
-      <strong class="underline">Promotion of equality</strong>: An impartial approach helps to dismantle systemic biases
-      and promotes equality, contributing to a fair society.
-      <br><br>
-      <strong class="underline">Friendliness</strong>: Most impartial individuals are genuinely nice and friendly to everyone. It
-      is very unlikely that they will ever start an argument or a fight.
-      <br><br>
-      <strong class="underline">Helpful</strong>: Offering help in difficult situations is often essential for them. Their genuine
-      approach to problem-solving creates a strong bond with people in need. This is usually how they show their empathy.
-      <br><br>
-      I wish people could truly understand this way of being, which is not indifference, but a sincere desire to
-      create harmony and avoid unnecessary conflicts.
-    </div>
-  </section>
-
-  <section id="contact" class="container py-5">
-    <h2 style="text-align:center; margin-bottom:2rem; color:var(--accent-color);">Contact &amp; Information</h2>
-    <div class="pb-3 mb-4 border-bottom"></div><br>
-    <div class="d-flex flex-wrap justify-content-center gap-5 mb-4">
-      <a href="mailto:andrea.grimandi1@protonmail.ch" class="contact-item text-center">
-        <div class="icon-circle mb-2"><i class="bi bi-envelope fs-2"></i></div>
-        <span>E-Mail</span>
-      </a>
-      <a href="files/resumee-andrea-grimandi-website.pdf" target="_blank" class="contact-item text-center">
-        <div class="icon-circle mb-2"><i class="bi bi-file-earmark-person fs-2"></i></div>
-        <span>Resume</span>
-      </a>
-      <a href="https://github.com/grimimirg" target="_blank" class="contact-item text-center">
-        <div class="icon-circle mb-2"><i class="bi bi-github fs-2"></i></div>
-        <span>GitHub</span>
-      </a>
-    </div>
-  </section>
-
-  <button id="backToTop" aria-label="Back to top">
-    &#11165;
-  </button>
-
-  <footer>
-    Template created by Andrea Grimandi
-  </footer>
-
-  <script src="js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    const GITHUB_USER = 'grimimirg';
-    const reposGrid = document.getElementById('reposGrid');
-
-    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`)
-      .then(res => res.json())
-      .then(repos => {
-        repos.forEach(repo => {
-          const col = document.createElement('div');
-          col.className = 'col-12 col-md-6';
-
-          const card = document.createElement('div');
-          card.className = 'repo-card';
-
-          card.innerHTML = `
-        <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
-        <p class="repo-desc">${repo.description || ''}</p>
-        <div class="repo-meta">
-          <span><i class="bi bi-star-fill"></i> ${repo.stargazers_count}</span>
-          &nbsp;|&nbsp;
-          <span><i class="bi bi-code-slash"></i> ${repo.language || '—'}</span>
+    <div class="services-grid">
+        <div class="service-card" id="whoami-card" data-tooltip="About me and my background">
+            <div class="service-icon">👨‍💻</div>
+            <div class="service-name">Who am I?</div>
         </div>
-      `;
 
-          col.appendChild(card);
-          reposGrid.appendChild(col);
+        <div class="service-card" id="projects-card" data-tooltip="My latest repositories">
+            <div class="service-icon">🚀</div>
+            <div class="service-name">Projects</div>
+        </div>
+
+        <div class="service-card" id="philosophy-card" data-tooltip="My approach to life and work">
+            <div class="service-icon">🧠</div>
+            <div class="service-name">Philosophy</div>
+        </div>
+
+        <a href="https://github.com/grimimirg" target="_blank" class="service-card"
+           data-tooltip="Open source projects and code">
+            <div class="service-icon">🦊</div>
+            <div class="service-name">GitHub</div>
+        </a>
+
+        <a href="mailto:andrea.grimandi1@protonmail.ch" class="service-card" data-tooltip="Get in touch via email">
+            <div class="service-icon">📧</div>
+            <div class="service-name">E-Mail</div>
+        </a>
+
+        <a href="files/resumee-andrea-grimandi-website.pdf" target="_blank" class="service-card"
+           data-tooltip="Download my CV">
+            <div class="service-icon">📄</div>
+            <div class="service-name">Resume</div>
+        </a>
+    </div>
+
+    <div id="whoami-section"
+         style="display: none; margin-top: 40px; border: 2px solid #a8dadc; padding: 25px; background: rgba(168, 218, 220, 0.08);">
+        <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #b4d4e1; letter-spacing: 3px; margin-bottom: 20px;">
+            [ WHO AM I? ]</h2>
+        <div style="font-family: 'Share Tech Mono', monospace; color: #a8dadc; line-height: 1.8;">
+            <p>I'm a Developer, Maker and Musician from <a href="https://goo.gl/maps/M1MQuRfsoDNt8RbC7" target="_blank"
+                                                           style="color: #b4d4e1; text-decoration: underline;">Valsamoggia</a>.
+            </p>
+            <br>
+            <p>I'm employed in a company that provides services to hospitals throughout Europe and I cooperate with <a
+                    href="https://andrearago.dev/" target="_blank" style="color: #b4d4e1; text-decoration: underline;">Andrea
+                Rago</a>, but I am also a volunteer developer at <a href="https://astranoto.com/" target="_blank"
+                                                                    style="color: #b4d4e1; text-decoration: underline;">Astranoto</a>
+                as well as an associate at <a href="https://www.fablabvalsamoggia.xyz/" target="_blank"
+                                              style="color: #b4d4e1; text-decoration: underline;">FabLab Valsamoggia</a>.
+            </p>
+            <br>
+            <p>I played with the gorgeous singer <a href="https://maryblengino.it/" target="_blank"
+                                                    style="color: #b4d4e1; text-decoration: underline;">Maria
+                Blengino</a>, and now I'm doing solo music for leisure.</p>
+        </div>
+    </div>
+
+    <div id="projects-section"
+         style="display: none; margin-top: 40px; border: 2px solid #a8dadc; padding: 25px; background: rgba(168, 218, 220, 0.08);">
+        <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #b4d4e1; letter-spacing: 3px; margin-bottom: 20px;">
+            [ PROJECTS ]</h2>
+        <div id="reposGrid"
+             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+        </div>
+    </div>
+
+    <div id="philosophy-section"
+         style="display: none; margin-top: 40px; border: 2px solid #a8dadc; padding: 25px; background: rgba(168, 218, 220, 0.08);">
+        <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #b4d4e1; letter-spacing: 3px; margin-bottom: 20px;">
+            [ PHILOSOPHY ]</h2>
+        <div style="font-family: 'Share Tech Mono', monospace; color: #a8dadc; line-height: 1.8;">
+            <p>Being an Impartial is a way of being that can appear strange or incomprehensible to many people.</p>
+            <br>
+            <p>Nevertheless, an Impartial is a strong believer in rational analysis of situations. Many people confuse
+                it as a lack of convictions or disinterest in taking a stance. On the contrary, an impartial follows
+                clear and defined principles, striving to apply them in a balanced way, without definitive and clear
+                alignments in most situations.</p>
+            <br>
+            <p>Usually the goal of many impartials is to promote dialogue, mutual understanding, and peaceful conflict
+                resolution. This approach does not stem from indecision or weakness, but from the conviction that it is
+                the best way to face life's situations.</p>
+            <br>
+            <p>However, this attitude is often misunderstood by giving the impression of detachment or apathy. In
+                reality, there is strong effort to maintain calm and analyze situations from multiple perspectives
+                before acting or taking any position. It is believed that the truth rarely lies on just one side and
+                that the best solutions emerge from confrontation and the ability to listen to others.</p>
+            <br>
+            <h3 style="font-family: 'VT323', monospace; font-size: 1.8rem; color: #b4d4e1; letter-spacing: 2px; margin-bottom: 15px;">
+                // Impartials have many strengths:</h3>
+            <br>
+            <p><strong style="color: #b4d4e1;">Fairness:</strong> Impartial individuals treat everyone equally, ensuring
+                that decisions are made based on merit rather than personal biases or relationships.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Objectivity:</strong> They are honest and able to assess situations and
+                information without being influenced by emotions or preconceived notions, leading to more rational and
+                sound conclusions.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Conflict resolution:</strong> Impartiality fosters trust and respect,
+                enabling them to mediate conflicts and find common ground among differing parties or opinions.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Encouragement of open dialogue:</strong> Their neutrality can create an
+                environment where diverse perspectives can be shared and discussed openly, promoting collaboration,
+                understanding and peace.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Better decision-making:</strong> Impartiality allows for a comprehensive
+                evaluation of as many possible of all relevant factors, leading to more balanced decisions.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Promotion of equality:</strong> An impartial approach helps to dismantle
+                systemic biases and promotes equality, contributing to a fair society.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Friendliness:</strong> Most impartial individuals are genuinely nice and
+                friendly to everyone. It is very unlikely that they will ever start an argument or a fight.</p>
+            <br>
+            <p><strong style="color: #b4d4e1;">Helpful:</strong> Offering help in difficult situations is often
+                essential for them. Their genuine approach to problem-solving creates a strong bond with people in need.
+                This is usually how they show their empathy.</p>
+            <br>
+            <p>I wish people could truly understand this way of being, which is not indifference, but a sincere desire
+                to create harmony and avoid unnecessary conflicts.</p>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p style="margin-bottom: 10px;">// Contact Information</p>
+        <p>Email: andrea.grimandi1@protonmail.ch | GitHub: @grimimirg</p>
+        <p style="margin-top: 15px; opacity: 0.5;">Template created by Claudione</p>
+    </footer>
+</div>
+
+<script>
+    const GITHUB_USER = 'grimimirg';
+
+    document.getElementById('whoami-card').addEventListener('click', function () {
+        toggleSection('whoami-section');
+    });
+
+    document.getElementById('projects-card').addEventListener('click', function () {
+        toggleSection('projects-section');
+        if (document.getElementById('reposGrid').children.length === 0) {
+            loadGitHubRepos();
+        }
+    });
+
+    document.getElementById('philosophy-card').addEventListener('click', function () {
+        toggleSection('philosophy-section');
+    });
+
+    function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const allSections = ['whoami-section', 'projects-section', 'philosophy-section'];
+
+        allSections.forEach(id => {
+            if (id === sectionId) {
+                document.getElementById(id).style.display =
+                    document.getElementById(id).style.display === 'none' ? 'block' : 'none';
+            } else {
+                document.getElementById(id).style.display = 'none';
+            }
         });
-      })
-      .catch(err => {
-        console.error('Cannot load repo content:', err);
-        reposGrid.innerHTML = '<p class="text-danger">Cannot load GitHub content!</p>';
-      });
+    }
 
-    const btn = document.getElementById('backToTop');
+    function loadGitHubRepos() {
+        const reposGrid = document.getElementById('reposGrid');
+        reposGrid.innerHTML = '<p style="color: #a8dadc;">// Loading repositories...</p>';
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) {
-        btn.style.display = 'block';
-      } else {
-        btn.style.display = 'none';
-      }
-    });
+        fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`)
+            .then(res => res.json())
+            .then(repos => {
+                reposGrid.innerHTML = '';
+                repos.forEach(repo => {
+                    const card = document.createElement('div');
+                    card.style.cssText = 'background: rgba(26, 31, 46, 0.6); border: 2px solid #a8dadc; padding: 20px; transition: all 0.3s ease; cursor: pointer;';
 
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+                    card.innerHTML = `
+                    <a href="${repo.html_url}" target="_blank" style="color: #b4d4e1; text-decoration: none; font-family: 'VT323', monospace; font-size: 1.5rem; letter-spacing: 2px;">
+                        [ ${repo.name} ]
+                    </a>
+                    <p style="color: #9dc5c3; margin: 10px 0; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem;">
+                        // ${repo.description || 'No description available'}
+                    </p>
+                    <div style="color: #a8dadc; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; opacity: 0.8;">
+                        <span>⭐ ${repo.stargazers_count}</span> | 
+                        <span>💻 ${repo.language || '—'}</span>
+                    </div>
+                `;
 
+                    card.addEventListener('mouseenter', function () {
+                        this.style.background = 'rgba(168, 218, 220, 0.12)';
+                        this.style.boxShadow = '0 0 25px rgba(168, 218, 220, 0.4)';
+                        this.style.transform = 'scale(1.02)';
+                    });
+
+                    card.addEventListener('mouseleave', function () {
+                        this.style.background = 'rgba(26, 31, 46, 0.6)';
+                        this.style.boxShadow = 'none';
+                        this.style.transform = 'scale(1)';
+                    });
+
+                    reposGrid.appendChild(card);
+                });
+            })
+            .catch(err => {
+                console.error('Cannot load repo content:', err);
+                reposGrid.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load GitHub content!</p>';
+            });
+    }
+</script>
 </body>
-
 </html>
