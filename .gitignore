@@ -68,3 +68,8 @@ temp/
 # Backup files
 *.bak
 *.backup
+
+# Personal files
+files/resume.personal.md
+files/picture.jpg
+files/resume.personal.pdf
