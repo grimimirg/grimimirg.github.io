@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrea Grimandi - Developer Portfolio</title>
     <link rel="stylesheet" href="css/theme.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -40,11 +41,10 @@
             <div class="service-name">E-Mail</div>
         </a>
 
-        <a href="files/resumee-andrea-grimandi-website.pdf" target="_blank" class="service-card"
-           data-tooltip="Download my CV">
+        <div class="service-card" id="resume-card" data-tooltip="View my CV">
             <div class="service-icon">📄</div>
             <div class="service-name">Resume</div>
-        </a>
+        </div>
     </div>
 
     <div id="whoami-section"
@@ -135,10 +135,19 @@
         </div>
     </div>
 
+    <div id="resume-section"
+         style="display: none; margin-top: 40px; border: 2px solid #a8dadc; padding: 25px; background: rgba(168, 218, 220, 0.08);">
+        <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #b4d4e1; letter-spacing: 3px; margin-bottom: 20px;">
+            [ RESUME ]</h2>
+        <div id="resume-content" style="font-family: 'Share Tech Mono', monospace; color: #a8dadc; line-height: 1.8;">
+            <p style="color: #a8dadc;">// Loading resume...</p>
+        </div>
+    </div>
+
     <footer id="contact">
         <p style="margin-bottom: 10px;">// Contact Information</p>
         <p>Email: andrea.grimandi1@protonmail.ch | GitHub: @grimimirg</p>
-        <p style="margin-top: 15px; opacity: 0.5;">Template created by Claudione</p>
+        <p style="margin-top: 15px; opacity: 0.5;">Template created by Clavdione</p>
     </footer>
 </div>
 
@@ -160,9 +169,16 @@
         toggleSection('philosophy-section');
     });
 
+    document.getElementById('resume-card').addEventListener('click', function () {
+        toggleSection('resume-section');
+        if (document.getElementById('resume-content').innerHTML.includes('Loading resume')) {
+            loadResume();
+        }
+    });
+
     function toggleSection(sectionId) {
         const section = document.getElementById(sectionId);
-        const allSections = ['whoami-section', 'projects-section', 'philosophy-section'];
+        const allSections = ['whoami-section', 'projects-section', 'philosophy-section', 'resume-section'];
 
         allSections.forEach(id => {
             if (id === sectionId) {
@@ -217,6 +233,20 @@
             .catch(err => {
                 console.error('Cannot load repo content:', err);
                 reposGrid.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load GitHub content!</p>';
+            });
+    }
+
+    function loadResume() {
+        const resumeContent = document.getElementById('resume-content');
+        
+        fetch('files/resume.md')
+            .then(res => res.text())
+            .then(markdown => {
+                resumeContent.innerHTML = marked.parse(markdown);
+            })
+            .catch(err => {
+                console.error('Cannot load resume:', err);
+                resumeContent.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load resume!</p>';
             });
     }
 </script>

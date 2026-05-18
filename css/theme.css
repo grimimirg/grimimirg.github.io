@@ -305,6 +305,78 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
+/* Resume content specific styles */
+#resume-content h1,
+#resume-content h2 {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    border-bottom: 2px solid #a8dadc;
+    padding-bottom: 10px;
+}
+
+#resume-content h3 {
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+#resume-content h4,
+#resume-content h5,
+#resume-content h6 {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+#resume-content h1 {
+    margin-top: 0;
+}
+
+#resume-content p {
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+#resume-content ul,
+#resume-content ol {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+#resume-content li {
+    margin-bottom: 8px;
+}
+
+#resume-content strong {
+    color: #b4d4e1;
+}
+
+#resume-content a {
+    color: #b4d4e1;
+    text-decoration: underline;
+}
+
+#resume-content a:hover {
+    color: #a8dadc;
+}
+
+#resume-content table {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#resume-content th,
+#resume-content td {
+    border: 1px solid #a8dadc;
+    padding: 10px;
+    text-align: left;
+}
+
+#resume-content th {
+    background: rgba(168, 218, 220, 0.1);
+}
+
 .MuiAlert-root {
     background: rgba(168, 218, 220, 0.1) !important;
     border: 1px solid #a8dadc !important;
