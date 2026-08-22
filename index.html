@@ -25,11 +25,6 @@
             <div class="service-name">Projects</div>
         </div>
 
-        <div class="service-card" id="philosophy-card" data-tooltip="My approach to life and work">
-            <div class="service-icon">🧠</div>
-            <div class="service-name">Philosophy</div>
-        </div>
-
         <a href="https://github.com/grimimirg" target="_blank" class="service-card"
            data-tooltip="Open source projects and code">
             <div class="service-icon">🦊</div>
@@ -46,10 +41,11 @@
             <div class="service-name">Resume</div>
         </div>
 
-        <div class="service-card" id="dnd-card" data-tooltip="View D&D Character">
-            <div class="service-icon">⚔️</div>
-            <div class="service-name">D&D Character</div>
+        <div class="service-card" id="philosophy-card" data-tooltip="My approach to life and work">
+            <div class="service-icon">🧠</div>
+            <div class="service-name">Philosophy</div>
         </div>
+
     </div>
 
     <div id="whoami-section"
@@ -149,13 +145,6 @@
         </div>
     </div>
 
-<!--    &lt;!&ndash; D&D Character Modal &ndash;&gt;-->
-<!--    <div id="dnd-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; overflow: auto; padding: 20px;">-->
-<!--        <div style="position: relative; max-width: 900px; margin: 20px auto; background: #1a1f2e; padding: 40px; border-radius: 10px; box-shadow: 0 0 50px rgba(168, 218, 220, 0.3);">-->
-<!--            <button id="close-dnd-modal" style="position: absolute; top: 15px; right: 20px; background: #c9a227; color: #1a1f2e; border: none; padding: 10px 20px; font-size: 24px; cursor: pointer; border-radius: 5px; z-index: 10; font-weight: bold;">×</button>-->
-<!--            <div id="dnd-content"></div>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <footer id="contact">
         <p style="margin-bottom: 10px;">// Contact Information</p>
@@ -189,19 +178,6 @@
         }
     });
 
-    document.getElementById('dnd-card').addEventListener('click', function () {
-        openDndModal();
-    });
-
-    document.getElementById('close-dnd-modal').addEventListener('click', function () {
-        closeDndModal();
-    });
-
-    document.getElementById('dnd-modal').addEventListener('click', function (e) {
-        if (e.target.id === 'dnd-modal') {
-            closeDndModal();
-        }
-    });
 
     function toggleSection(sectionId) {
         const section = document.getElementById(sectionId);
@@ -217,149 +193,7 @@
         });
     }
 
-    function openDndModal() {
-        const modal = document.getElementById('dnd-modal');
-        const content = document.getElementById('dnd-content');
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        if (content.innerHTML === '') {
-            fetch('dnd-character.html')
-                .then(res => res.text())
-                .then(html => {
-                    // Create a shadow DOM to isolate styles
-                    const shadowHost = document.createElement('div');
-                    shadowHost.id = 'dnd-shadow-host';
-                    content.appendChild(shadowHost);
-                    
-                    const shadowRoot = shadowHost.attachShadow({mode: 'open'});
-                    
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    
-                    // Extract styles and body content
-                    const styles = doc.querySelector('style') ? doc.querySelector('style').innerHTML : '';
-                    const bodyContent = doc.body.innerHTML;
-                    
-                    // Add Google Fonts link to shadow DOM
-                    const linkElement = document.createElement('link');
-                    linkElement.rel = 'preconnect';
-                    linkElement.href = 'https://fonts.googleapis.com';
-                    shadowRoot.appendChild(linkElement);
-                    
-                    const linkElement2 = document.createElement('link');
-                    linkElement2.rel = 'preconnect';
-                    linkElement2.href = 'https://fonts.gstatic.com';
-                    linkElement2.crossOrigin = '';
-                    shadowRoot.appendChild(linkElement2);
-                    
-                    const linkElement3 = document.createElement('link');
-                    linkElement3.rel = 'stylesheet';
-                    linkElement3.href = 'https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&display=swap';
-                    shadowRoot.appendChild(linkElement3);
-                    
-                    // Add styles to shadow DOM
-                    const styleElement = document.createElement('style');
-                    styleElement.innerHTML = styles + `
-                        * {
-                            color: #c8d4e6 !important;
-                            font-family: 'IM Fell English', serif !important;
-                        }
-                        h1, h2, h3 {
-                            color: #d4d4d4 !important;
-                            font-family: 'MedievalSharp', cursive !important;
-                        }
-                        .tab-button, .spell-tab-button {
-                            font-family: 'Uncial Antiqua', cursive !important;
-                        }
-                        .highlight, .emphasis {
-                            color: #d4d4d4 !important;
-                        }
-                        .secret-title {
-                            color: #c9a227 !important;
-                        }
-                        .spell-level {
-                            color: #c9a227 !important;
-                            font-family: 'Uncial Antiqua', cursive !important;
-                        }
-                        .spell-name {
-                            font-family: 'MedievalSharp', cursive !important;
-                        }
-                        a {
-                            color: #b4d4e1 !important;
-                        }
-                        .tab-button.active, .spell-tab-button.active {
-                            color: #1a1f2e !important;
-                        }
-                        ::-webkit-scrollbar {
-                            width: 0px;
-                            background: transparent;
-                        }
-                        ::-webkit-scrollbar-thumb {
-                            background: transparent;
-                        }
-                        ::-webkit-scrollbar-track {
-                            background: transparent;
-                        }
-                    `;
-                    shadowRoot.appendChild(styleElement);
-                    
-                    // Add body content to shadow DOM
-                    const bodyWrapper = document.createElement('div');
-                    bodyWrapper.innerHTML = bodyContent;
-                    shadowRoot.appendChild(bodyWrapper);
-                    
-                    // Re-attach event listeners for tabs within shadow DOM
-                    const tabButtons = shadowRoot.querySelectorAll('.tab-button');
-                    tabButtons.forEach(button => {
-                        button.addEventListener('click', function(e) {
-                            const tabId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                            showTabInShadow(shadowRoot, tabId, this);
-                        });
-                    });
-                    
-                    const spellTabButtons = shadowRoot.querySelectorAll('.spell-tab-button');
-                    spellTabButtons.forEach(button => {
-                        button.addEventListener('click', function(e) {
-                            const tabId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                            showSpellTabInShadow(shadowRoot, tabId, this);
-                        });
-                    });
-                })
-                .catch(err => {
-                    console.error('Cannot load D&D character:', err);
-                    content.innerHTML = '<p style="color: #ff6b6b; padding: 20px;">// ERROR: Cannot load D&D character!</p>';
-                });
-        }
-    }
     
-    function showTabInShadow(shadowRoot, tabId, clickedButton) {
-        const tabContents = shadowRoot.querySelectorAll('.tab-content');
-        tabContents.forEach(tc => tc.classList.remove('active'));
-        
-        const tabButtons = shadowRoot.querySelectorAll('.tab-button');
-        tabButtons.forEach(tb => tb.classList.remove('active'));
-        
-        shadowRoot.querySelector('#' + tabId).classList.add('active');
-        clickedButton.classList.add('active');
-    }
-    
-    function showSpellTabInShadow(shadowRoot, tabId, clickedButton) {
-        const spellContents = shadowRoot.querySelectorAll('.spell-content');
-        spellContents.forEach(sc => sc.classList.remove('active'));
-        
-        const spellTabButtons = shadowRoot.querySelectorAll('.spell-tab-button');
-        spellTabButtons.forEach(stb => stb.classList.remove('active'));
-        
-        shadowRoot.querySelector('#' + tabId).classList.add('active');
-        clickedButton.classList.add('active');
-    }
-
-    function closeDndModal() {
-        document.getElementById('dnd-modal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
 
     function loadGitHubRepos() {
         const reposGrid = document.getElementById('reposGrid');
