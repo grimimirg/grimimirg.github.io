@@ -1,5 +1,3 @@
-# Andrea Grimandi
-
 **Email:** andrea.grimandi1@protonmail.ch | **Website:** https://grimimirg.github.io/
 
 ## SKILLS
@@ -94,15 +92,28 @@ Demo: <a href="https://dnd.grimilab.ddns.net/" target="_blank">https://dnd.grimi
 - <a href="https://github.com/grimimirg/audio-streamer" target="_blank">**audio-streamer**</a> - Audio Streamer is a Python application that captures audio from physical sources, streaming it over HTTP. Friends can listen through a simple web interface, creating your own personal internet radio station.
 - <a href="https://github.com/grimimirg/homelab" target="_blank">**homelab**</a> - This project provides a modular, containerized approach to managing your home services using Docker and Nginx as a reverse proxy. The infrastructure is defined as code (IaC), allowing for rapid setup, deployment, and cleanup.
 
+### Guides and Tutorials
+- <a href="https://github.com/grimimirg/local-ai-setup" target="_blank">**local-ai-setup**</a> - A guide for setting up local AI infrastructure.
+- <a href="https://github.com/grimimirg/aiwa-technical-guide/tree/main" target="_blank">**aiwa-technical-guide**</a> - A technical manual for the AIWA F350 cassette deck.
+
 ### 3D Printing and modelling
 I have acquired a good experience in 3D printing (FDM) and modeling with Blender/Fusion 360.
 
 ### Electronics
 I possess a basic understanding of electronics and microcontrollers that enables me to understand and construct simple circuits and utilities when necessary.
 
+- <a href="https://github.com/grimimirg/simple-radio-transmitter" target="_blank">**simple-radio-transmitter**</a> - A simple radio transmitter project for broadcasting audio signals.
+- <a href="https://github.com/grimimirg/gartner-nodes" target="_blank">**gartner-nodes**</a> - ESP32-based application in development for programmable automatic irrigation systems.
+
 ### Crafting
-I am skilled at creating things using recycled materials, transforming waste into useful and artistic objects.  
-Link: <a href="https://craft.grimilab.ddns.net/" target="_blank">https://craft.grimilab.ddns.net/</a>
+  I am skilled at creating things using recycled materials, transforming waste into useful and artistic objects.
+
+Some other handiwork: 
+
+- <a href="https://github.com/grimimirg/DIY-Ribbon-Microphone" target="_blank">**DIY-Ribbon-Microphone**</a> - A DIY ribbon microphone built from scratch using basic components.
+- <a href="https://github.com/grimimirg/graphite-rehostat" target="_blank">**graphite-rehostat**</a> - A graphite-based rehostat for variable resistance applications.
+
+Check out more here: <a href="https://craft.grimilab.ddns.net/" target="_blank">https://craft.grimilab.ddns.net/</a>
 
 ### Music
-I play guitar independently, creating and performing music for leisure.
+I sometimes play guitar and bass, creating and performing music for leisure.
