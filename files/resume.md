@@ -2,9 +2,9 @@
 
 ## SKILLS
 
-Software development (current: Java), TDD, Docker, Agile methodologies
+**Software development:** JavaScript · Python · Java · C++
 
-**Technologies:** Java · Spring Boot · REST API · Docker (basic) · Git · Jenkins (basic) · Agile · TDD · Hibernate · Maven · Linux · Microservices · Node.js · Vue.js
+**Technologies:** Git · Linux · Docker · REST API · Node.js · Spring Boot · Vue.js · Maven · Hibernate · Jenkins · Microservices · Agile · TDD
 
 ## WORK EXPERIENCE
 
@@ -64,17 +64,12 @@ Field of study: Software and applications development and analysis
 
 ## LANGUAGE SKILLS
 
-**Mother tongue:** Italian
-
-**Other languages:**
-
 | Language | Listening | Reading | Spoken Production | Spoken Interaction |
 |----------|-----------|---------|-------------------|-------------------|
+| Italian  | C2        | C2      | C2                | C2                |
 | English  | C1        | C1      | C1                | C1                |
 | German   | B1        | B1      | B1                | B1                |
 | Norwegian| A1        | A1      | A1                | A1                |
-
-*Levels: A1 and A2: Basic user; B1 and B2: Independent user; C1 and C2: Proficient user*
 
 ## VOLUNTEERING
 
