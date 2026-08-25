@@ -41,6 +41,11 @@
                 <div class="service-name">E-Mail</div>
             </a>
 
+            <div class="service-card" id="gears-card" data-tooltip="Wanna see some vintage?">
+                <div class="service-icon">⚙️</div>
+                <div class="gears-name">Gears</div>
+            </div>
+
             <div class="service-card" id="philosophy-card" data-tooltip="Read it carefully!">
                 <div class="service-icon">🧠</div>
                 <div class="service-name">Philosophy</div>
@@ -198,7 +203,123 @@
             <p style="color: #8b949e;">// Loading resume...</p>
         </div>
     </div>
-    
+
+    <div id="gears-section"
+         style="display: none; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08);">
+        <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #c9d1d9; letter-spacing: 3px; margin-bottom: 20px;">
+            [ GEARS ]
+        </h2>
+        <div id="gears-content"
+             style="font-family: 'Share Tech Mono', monospace; color: #8b949e; line-height: 1.8;">
+
+            <!-- DENON -->
+            <div style="display: flex; align-items: flex-start; gap: 30px; margin: 25px 0;">
+
+                <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+                    <img src="files/denon.jpeg"
+                         alt="Denon"
+                         onclick="zoomImage(this.src, this.alt)"
+                         style="width: 338px; max-width: 100%; height: auto; object-fit: contain; border: 2px solid #6a7d8c; cursor: zoom-in;">
+
+                    <div style="margin-top: 10px; color: #c9d1d9; text-align: center; font-size: 1.1rem;">
+                        Denon
+                    </div>
+                </div>
+
+                <p style="flex: 1; margin: 0; color: #8b949e; text-align: justify">
+                    A well-built Japanese CD player from the late 1980s, featuring dual PCM54HP
+                    20-bit DACs, coaxial and optical digital outputs, a dynamic range of 97 dB
+                    and a precise, reliable transport mechanism.
+                </p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #6a7d8c; margin: 30px 0;">
+
+            <!-- AIWA -->
+            <div style="display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 30px; margin: 25px 0;">
+
+                <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+                    <img src="files/aiwa.jpeg"
+                         alt="AIWA"
+                         onclick="zoomImage(this.src, this.alt)"
+                         style="width: 338px; max-width: 100%; height: auto; object-fit: contain; border: 2px solid #6a7d8c; cursor: zoom-in;">
+
+                    <div style="margin-top: 10px; color: #c9d1d9; text-align: center; font-size: 1.1rem;">
+                        AIWA F350
+                    </div>
+                </div>
+
+                <p style="flex: 1; margin: 0; color: #8b949e; text-align: justify">
+                    A classic stereo cassette deck from the early 1980s, featuring Dolby B noise reduction,
+                    a precise transport mechanism and a clean, straightforward design typical of AIWA's
+                    home audio equipment.
+                </p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #6a7d8c; margin: 30px 0;">
+
+            <!-- YAMAHA -->
+            <div style="display: flex; align-items: flex-start; gap: 30px; margin: 25px 0;">
+
+                <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+                    <img src="files/yamaha.jpeg"
+                         alt="YAMAHA"
+                         onclick="zoomImage(this.src, this.alt)"
+                         style="width: 338px; max-width: 100%; height: auto; object-fit: contain; border: 2px solid #6a7d8c; cursor: zoom-in;">
+
+                    <div style="margin-top: 10px; color: #c9d1d9; text-align: center; font-size: 1.1rem;">
+                        YAMAHA RX-V592
+                    </div>
+                </div>
+
+                <p style="flex: 1; margin: 0; color: #8b949e; text-align: justify">
+                    A 5.1-channel AV receiver designed for early home-theater systems, combining Dolby
+                    Digital and DTS surround processing with Yamaha's Cinema DSP sound modes and a wide
+                    range of analog audio and video connections.
+                </p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #6a7d8c; margin: 30px 0;">
+
+            <!-- DUAL HS51 -->
+            <div style="display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 30px; margin: 25px 0;">
+
+                <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+                    <img src="files/hs51.jpeg"
+                         alt="Dual HS51"
+                         onclick="zoomImage(this.src, this.alt)"
+                         style="width: 338px; max-width: 100%; height: auto; object-fit: contain; border: 2px solid #6a7d8c; cursor: zoom-in;">
+
+                    <div style="margin-top: 10px; color: #c9d1d9; text-align: center; font-size: 1.1rem;">
+                        Dual HS51
+                    </div>
+                </div>
+
+                <p style="flex: 1; margin: 0; color: #8b949e; text-align: justify">
+                    A compact vintage record player from Dual's classic hi-fi era, built around a reliable
+                    automatic turntable mechanism and intended for convenient playback of vinyl records
+                    in domestic stereo systems.
+                </p>
+            </div>
+
+        </div>
+
+        <dialog id="zoom-dialog"
+                onclick="closeZoom()"
+                style="padding: 10px; border: 2px solid #6a7d8c; border-radius: 6px; background: rgba(10, 15, 20, 0.96); max-width: 95vw; max-height: 95vh;">
+
+            <img id="zoom-image"
+                 alt=""
+                 onclick="event.stopPropagation()"
+                 style="display: block; max-width: 90vw; max-height: 85vh; width: auto; height: auto; object-fit: contain; cursor: zoom-out;">
+
+            <button onclick="closeZoom()"
+                    style="display: block; margin: 10px auto 0; padding: 6px 14px; border: 1px solid #6a7d8c; background: transparent; color: #c9d1d9; cursor: pointer; font-family: 'Share Tech Mono', monospace;">
+                CLOSE
+            </button>
+        </dialog>
+    </div>
+
     <footer id="contact">
         <p style="margin-bottom: 10px;">// Contact Information</p>
         <p>Email: andrea.grimandi1@protonmail.ch | GitHub: @grimimirg</p>
@@ -210,6 +331,10 @@
 
     document.getElementById('whoami-card').addEventListener('click', function () {
         toggleSection('whoami-section');
+    });
+
+    document.getElementById('gears-card').addEventListener('click', function () {
+        toggleSection('gears-section');
     });
 
     document.getElementById('projects-card').addEventListener('click', function () {
@@ -232,7 +357,7 @@
 
 
     function toggleSection(sectionId) {
-        const allSections = ['whoami-section', 'projects-section', 'philosophy-section', 'resume-section'];
+        const allSections = ['whoami-section', 'projects-section', 'philosophy-section', 'resume-section', 'gears-section'];
 
         allSections.forEach(id => {
             if (id === sectionId) {
@@ -304,6 +429,19 @@
                 console.error('Cannot load resume:', err);
                 resumeContent.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load resume!</p>';
             });
+    }
+
+    function zoomImage(src, alt) {
+        const dialog = document.getElementById("zoom-dialog");
+        const immagine = document.getElementById("zoom-image");
+
+        immagine.src = src;
+        immagine.alt = alt;
+        dialog.showModal();
+    }
+
+    function closeZoom() {
+        document.getElementById("zoom-dialog").close();
     }
 </script>
 </body>
