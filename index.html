@@ -12,45 +12,45 @@
 <div class="container">
     <header>
         <h1>Andrea Grimandi</h1>
-        <p>Developer • Maker • Musician</p>
+        <p>| Developer | Maker | Musician |</p><br><br>
+        <div class="services-grid">
+
+            <div class="service-card" id="whoami-card" data-tooltip="Enough self explanatory...">
+                <div class="service-icon">👨‍💻</div>
+                <div class="service-name">Who am I?</div>
+            </div>
+
+            <div class="service-card" id="resume-card" data-tooltip="What I can do">
+                <div class="service-icon">📄</div>
+                <div class="service-name">Resume</div>
+            </div>
+
+            <div class="service-card" id="projects-card" data-tooltip="OpenSource works">
+                <div class="service-icon">🚀</div>
+                <div class="service-name">Projects</div>
+            </div>
+
+            <a href="https://github.com/grimimirg" target="_blank" class="service-card"
+               data-tooltip="Find me here">
+                <div class="service-icon">🦊</div>
+                <div class="service-name">GitHub</div>
+            </a>
+
+            <a href="mailto:andrea.grimandi1@protonmail.ch" class="service-card" data-tooltip="Write me here">
+                <div class="service-icon">📧</div>
+                <div class="service-name">E-Mail</div>
+            </a>
+
+            <div class="service-card" id="philosophy-card" data-tooltip="Read it carefully!">
+                <div class="service-icon">🧠</div>
+                <div class="service-name">Philosophy</div>
+            </div>
+
+        </div>
     </header>
 
-    <div class="services-grid">
-        <div class="service-card" id="whoami-card" data-tooltip="About me">
-            <div class="service-icon">👨‍💻</div>
-            <div class="service-name">Who am I?</div>
-        </div>
-
-        <div class="service-card" id="resume-card" data-tooltip="What I can do">
-            <div class="service-icon">📄</div>
-            <div class="service-name">Resume</div>
-        </div>
-
-        <div class="service-card" id="projects-card" data-tooltip="My latest repositories">
-            <div class="service-icon">🚀</div>
-            <div class="service-name">Projects</div>
-        </div>
-
-        <a href="https://github.com/grimimirg" target="_blank" class="service-card"
-           data-tooltip="Find me here">
-            <div class="service-icon">🦊</div>
-            <div class="service-name">GitHub</div>
-        </a>
-
-        <a href="mailto:andrea.grimandi1@protonmail.ch" class="service-card" data-tooltip="Write me here">
-            <div class="service-icon">📧</div>
-            <div class="service-name">E-Mail</div>
-        </a>
-
-        <div class="service-card" id="philosophy-card" data-tooltip="Read it carefully...">
-            <div class="service-icon">🧠</div>
-            <div class="service-name">Philosophy</div>
-        </div>
-
-    </div>
-
     <div id="whoami-section"
-         style="display: block; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08);">
+         style="display: block; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08); text-align: justify">
         <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #c9d1d9; letter-spacing: 3px; margin-bottom: 20px;">
             [ WHO AM I? ]</h2>
         <div style="font-family: 'Share Tech Mono', monospace; color: #8b949e; line-height: 1.8; display: flex; gap: 25px; align-items: flex-start;">
@@ -101,7 +101,7 @@
     </div>
 
     <div id="philosophy-section"
-         style="display: none; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08);">
+         style="display: none; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08); text-align: justify">
         <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #c9d1d9; letter-spacing: 3px; margin-bottom: 20px;">
             [ PHILOSOPHY ]</h2>
         <div style="font-family: 'Share Tech Mono', monospace; color: #8b949e; line-height: 1.8;">
@@ -157,6 +157,7 @@
                 would be to judge individuals according to their own behavior and character rather than their nationality
                 or group identity. This would help reduce prejudice worldwide, encourage social trust, and ensure that
                 people are treated fairly while those who commit wrongdoing are still held responsible for their actions.
+                Of course, the topic of immigration and foreign presence in countries is extremely complex, and this example serves only a functional purpose to illustrate the principle of impartial judgment.
                 Last but not least, treating neutrality as an excuse to ignore suffering or injustice is also damaging.
                 If someone witnesses a vulnerable person being bullied but refuses to intervene because they do not want
                 to “take sides” their inaction allows the harm to continue. Benevolent impartiality would involve
@@ -197,8 +198,7 @@
             <p style="color: #8b949e;">// Loading resume...</p>
         </div>
     </div>
-
-
+    
     <footer id="contact">
         <p style="margin-bottom: 10px;">// Contact Information</p>
         <p>Email: andrea.grimandi1@protonmail.ch | GitHub: @grimimirg</p>
@@ -232,7 +232,6 @@
 
 
     function toggleSection(sectionId) {
-        const section = document.getElementById(sectionId);
         const allSections = ['whoami-section', 'projects-section', 'philosophy-section', 'resume-section'];
 
         allSections.forEach(id => {
@@ -245,8 +244,6 @@
         });
     }
 
-    
-
     function loadGitHubRepos() {
         const reposGrid = document.getElementById('reposGrid');
         reposGrid.innerHTML = '<p style="color: #8b949e;">// Loading repositories...</p>';
@@ -255,7 +252,9 @@
             .then(res => res.json())
             .then(repos => {
                 reposGrid.innerHTML = '';
-                repos.forEach(repo => {
+                repos.filter(repos => repos.name !== "grimimirg.github.io")
+                    .sort((a, b) => a.stargazers_count < b.stargazers_count)
+                    .forEach(repo => {
                     const card = document.createElement('div');
                     card.style.cssText = 'background: rgba(22, 27, 34, 0.6); border: 2px solid #6a7d8c; padding: 20px; transition: all 0.3s ease; cursor: pointer;';
 
