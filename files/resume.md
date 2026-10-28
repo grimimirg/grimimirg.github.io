@@ -83,7 +83,7 @@ Link: https://www.fablabvalsamoggia.xyz/
 
 ### Personal Independent Projects
 - <a href="https://github.com/grimimirg/dndbook" target="_blank">**dndbook**</a> - A web application for managing D&D campaigns centered on story telling and events.  
-Demo: <a href="https://dnd.grimilab.ddns.net/" target="_blank">https://dnd.grimilab.ddns.net/</a>
+Demo: <a href="https://dnd.grimilab.duckdns.org/" target="_blank">https://dnd.grimilab.duckdns.org/</a>
 - <a href="https://github.com/grimimirg/audio-streamer" target="_blank">**audio-streamer**</a> - Audio Streamer is a Python application that captures audio from physical sources, streaming it over HTTP. Friends can listen through a simple web interface, creating your own personal internet radio station.
 - <a href="https://github.com/grimimirg/homelab" target="_blank">**homelab**</a> - This project provides a modular, containerized approach to managing your home services using Docker and Nginx as a reverse proxy. The infrastructure is defined as code (IaC), allowing for rapid setup, deployment, and cleanup.
 
@@ -108,7 +108,7 @@ Some other handiwork:
 - <a href="https://github.com/grimimirg/DIY-Ribbon-Microphone" target="_blank">**DIY-Ribbon-Microphone**</a> - A DIY ribbon microphone built from scratch using basic components.
 - <a href="https://github.com/grimimirg/graphite-rehostat" target="_blank">**graphite-rehostat**</a> - A graphite-based rehostat for variable resistance applications.
 
-Check out more here: <a href="https://craft.grimilab.ddns.net/" target="_blank">https://craft.grimilab.ddns.net/</a>
+Check out more here: <a href="https://craft.grimilab.duckdns.org/" target="_blank">https://craft.grimilab.duckdns.org/</a>
 
 ### Music
 I sometimes play guitar and bass, creating and performing music for leisure.
