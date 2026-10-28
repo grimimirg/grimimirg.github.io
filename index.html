@@ -11,9 +11,19 @@
 <body>
 <div class="container">
     <header>
-        <h1>Andrea Grimandi</h1>
-        <p>| Developer | Maker | Musician |</p><br><br>
-        <div class="services-grid">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false"
+                aria-controls="services-grid">[ &#9776; ]
+        </button>
+        <div class="header-title">
+            <h1>Andrea Grimandi</h1>
+            <p class="tagline">
+                <span class="tagline-cmd">whoami</span>
+                <span class="tagline-out">&gt;&gt; <span id="tagline-roles"></span><span
+                        class="tagline-caret">&#9608;</span></span>
+                <noscript>developer &middot; maker &middot; musician</noscript>
+            </p>
+        </div>
+        <div class="services-grid" id="services-grid">
 
             <div class="service-card" id="whoami-card" data-tooltip="Self explanatory...">
                 <div class="service-icon">👨‍💻</div>
@@ -49,7 +59,7 @@
     </header>
 
     <div id="whoami-section"
-         style="display: block; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08); text-align: justify">
+         style="display: none; margin-top: 40px; border: 2px solid #6a7d8c; padding: 25px; background: rgba(106, 125, 140, 0.08); text-align: justify">
         <h2 style="font-family: 'VT323', monospace; font-size: 2.5rem; color: #c9d1d9; letter-spacing: 3px; margin-bottom: 20px;">
             [ WHO AM I? ]</h2>
         <div style="font-family: 'Share Tech Mono', monospace; color: #8b949e; line-height: 1.8; display: flex; gap: 25px; align-items: flex-start;">
@@ -702,6 +712,7 @@
 
 <script>
     const GITHUB_USER = 'grimimirg';
+    const ALL_SECTIONS = ['whoami-section', 'projects-section', 'philosophy-section', 'thoughts-section', 'resume-section', 'gears-section'];
 
     document.getElementById('whoami-card').addEventListener('click', function () {
         toggleSection('whoami-section');
@@ -733,10 +744,12 @@
         }
     });
 
-    function toggleSection(sectionId) {
-        const allSections = ['whoami-section', 'projects-section', 'philosophy-section', 'thoughts-section', 'resume-section', 'gears-section'];
+    function anySectionVisible() {
+        return ALL_SECTIONS.some(id => document.getElementById(id).style.display !== 'none');
+    }
 
-        allSections.forEach(id => {
+    function toggleSection(sectionId) {
+        ALL_SECTIONS.forEach(id => {
             if (id === sectionId) {
                 document.getElementById(id).style.display =
                     document.getElementById(id).style.display === 'none' ? 'block' : 'none';
@@ -836,6 +849,84 @@
             this.close();
         }
     });
+
+    // Collapse the header title on scroll, leaving only the nav buttons visible
+    (function () {
+        const header = document.querySelector('header');
+        const COLLAPSE_AT = 80;
+        let ticking = false;
+
+        function update() {
+            header.classList.toggle('scrolled', window.scrollY > COLLAPSE_AT);
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(update);
+            }
+        }, {passive: true});
+
+        update();
+    })();
+
+    // Mobile: hamburger menu + no section open by default
+    (function () {
+        const header = document.querySelector('header');
+        const toggle = document.getElementById('menu-toggle');
+        const mobile = window.matchMedia('(max-width: 768px)');
+
+        function setMenu(open) {
+            header.classList.toggle('menu-collapsed', !open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        toggle.addEventListener('click', function () {
+            setMenu(header.classList.contains('menu-collapsed'));
+        });
+
+        // The buttons fold into the hamburger while a section is open, and come back when none is
+        document.getElementById('services-grid').addEventListener('click', function (e) {
+            if (mobile.matches && e.target.closest('.service-card')) {
+                setMenu(!anySectionVisible());
+            }
+        });
+
+        mobile.addEventListener('change', function (e) {
+            if (!e.matches) {
+                setMenu(true);
+            }
+        });
+    })();
+
+    // Tagline: types the roles out once, like a shell response on load
+    (function () {
+        const out = document.getElementById('tagline-roles');
+        const ROLES = ['developer', 'maker', 'musician'];
+        const SEP = ' \u00b7 ';
+        const TYPE_MS = 55;
+
+        const full = ROLES.join(SEP);
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            out.textContent = full;
+            return;
+        }
+
+        let i = 0;
+
+        function tick() {
+            out.textContent = full.slice(0, i);
+
+            if (i < full.length) {
+                i++;
+                setTimeout(tick, TYPE_MS);
+            }
+        }
+
+        tick();
+    })();
 </script>
 </body>
 </html>
