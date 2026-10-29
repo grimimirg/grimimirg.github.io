@@ -308,14 +308,9 @@ footer {
         font-size: 2.5rem;
     }
 
-    /* Only needed once the buttons are out of sight: scrolled away or folded up */
-    header.scrolled .menu-toggle,
-    header.menu-collapsed .menu-toggle {
+    /* Always reachable, so the menu can be toggled shut again */
+    .menu-toggle {
         display: block;
-    }
-
-    .header-title {
-        padding-right: 60px;
     }
 
     .tagline {
@@ -351,8 +346,10 @@ footer {
         width: fit-content;
     }
 
-    header {
-        padding-top: 20px;
+    /* Room for the hamburger above the content, collapsed or not */
+    header,
+    header.scrolled {
+        padding-top: 52px;
     }
 
     #whoami-section > div[style*="display: flex"] {
