@@ -706,7 +706,8 @@
 </div>
 
 <script>
-    const GITHUB_USER = 'grimimirg';
+    const GITEA_BASE = 'https://git.grimilab.duckdns.org';
+    const GITEA_USER = 'andreagrimandi';
     const ALL_SECTIONS = ['whoami-section', 'projects-section', 'philosophy-section', 'thoughts-section', 'resume-section', 'gears-section'];
 
     document.getElementById('whoami-card').addEventListener('click', function () {
@@ -720,7 +721,7 @@
     document.getElementById('projects-card').addEventListener('click', function () {
         toggleSection('projects-section');
         if (document.getElementById('reposGrid').children.length === 0) {
-            loadGitHubRepos();
+            loadGiteaRepos();
         }
     });
 
@@ -754,16 +755,16 @@
         });
     }
 
-    function loadGitHubRepos() {
+    function loadGiteaRepos() {
         const reposGrid = document.getElementById('reposGrid');
         reposGrid.innerHTML = '<p style="color: #8b949e;">// Loading repositories...</p>';
 
-        fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`)
+        fetch(`${GITEA_BASE}/api/v1/users/${GITEA_USER}/repos?limit=100&sort=updated`)
             .then(res => res.json())
             .then(repos => {
                 reposGrid.innerHTML = '';
-                repos.filter(repos => repos.name !== "grimimirg.github.io")
-                    .sort((a, b) => a.stargazers_count < b.stargazers_count)
+                repos.filter(repo => repo.name !== "grimimirg.github.io" && repo.name !== "homelab-core")
+                    .sort((a, b) => b.stars_count - a.stars_count)
                     .forEach(repo => {
                         const card = document.createElement('div');
                         card.style.cssText = 'background: rgba(22, 27, 34, 0.6); border: 2px solid #6a7d8c; padding: 20px; transition: all 0.3s ease; cursor: pointer;';
@@ -776,7 +777,7 @@
                         // ${repo.description || 'No description available'}
                     </p>
                     <div style="color: #8b949e; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; opacity: 0.8;">
-                        <span>⭐ ${repo.stargazers_count}</span> | 
+                        <span>⭐ ${repo.stars_count}</span> | 
                         <span>💻 ${repo.language || '—'}</span>
                     </div>
                 `;
@@ -798,7 +799,7 @@
             })
             .catch(err => {
                 console.error('Cannot load repo content:', err);
-                reposGrid.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load GitHub content!</p>';
+                reposGrid.innerHTML = '<p style="color: #ff6b6b;">// ERROR: Cannot load Gitea content!<br>// The self-hosted server may be offline, try again later.</p>';
             });
     }
 
