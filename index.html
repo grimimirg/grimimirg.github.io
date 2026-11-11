@@ -764,7 +764,7 @@
             .then(repos => {
                 reposGrid.innerHTML = '';
                 repos.filter(repo => repo.name !== "grimimirg.github.io" && repo.name !== "homelab-core")
-                    .sort((a, b) => b.stars_count - a.stars_count)
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
                     .forEach(repo => {
                         const card = document.createElement('div');
                         card.style.cssText = 'background: rgba(22, 27, 34, 0.6); border: 2px solid #6a7d8c; padding: 20px; transition: all 0.3s ease; cursor: pointer;';
@@ -777,7 +777,6 @@
                         // ${repo.description || 'No description available'}
                     </p>
                     <div style="color: #8b949e; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; opacity: 0.8;">
-                        <span>⭐ ${repo.stars_count}</span> | 
                         <span>💻 ${repo.language || '—'}</span>
                     </div>
                 `;
